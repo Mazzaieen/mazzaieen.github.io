@@ -3,92 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pop Up Simulation</title>
+    <title>Erratic Pop-ups</title>
     <style>
         body {
             margin: 0;
             padding: 0;
+            overflow: hidden;
             height: 100vh;
-            background: url('https://storage.googleapis.com/gweb-uniblog-publish-prod/original_images/Social_dino-with-hat.gif') no-repeat center center fixed;
+            background: url('https://external-preview.redd.it/uhq5zTcMPM3tOW_fbUz4PayDt_5pkEXdyXXoRWs3XOg.jpg?auto=webp&s=e06461124c1ccfdba') no-repeat center center fixed;
             background-size: cover;
-            font-family: 'Arial', sans-serif;
         }
 
         .popup {
             position: absolute;
-            width: 300px;
-            height: 200px;
-            border: 1px solid black;
-            background-color: white;
-            display: none;
-            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 0.3s ease-in-out, moveAround 5s infinite;
         }
 
-        .popup img {
-            width: 100%;
-            height: 100%;
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
         }
 
-        @keyframes popUpAnimation {
-            0% { opacity: 0; transform: scale(0); }
-            100% { opacity: 1; transform: scale(1); }
-        }
-
-        .fadeOut {
-            animation: fadeOut 1s forwards;
-        }
-
-        @keyframes fadeOut {
-            0% { opacity: 1; }
-            100% { opacity: 0; }
+        @keyframes moveAround {
+            0% {
+                transform: translate(0, 0);
+            }
+            25% {
+                transform: translate(20vw, -10vh);
+            }
+            50% {
+                transform: translate(-15vw, 15vh);
+            }
+            75% {
+                transform: translate(10vw, -20vh);
+            }
+            100% {
+                transform: translate(0, 0);
+            }
         }
     </style>
 </head>
 <body>
-
-    <div class="popup" id="popup1">
-        <img src="https://i.sstatic.net/5dN1R.png" alt="Popup 1">
-    </div>
-    <div class="popup" id="popup2">
-        <img src="https://static.wikia.nocookie.net/obsoletebattleshow/images/9/96/Popup2024.png/revision/latest?cb=20241204214634" alt="Popup 2">
-    </div>
-    <div class="popup" id="popup3">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Scareware_example_popup.webp/634px-Scareware_example_popup.webp.png" alt="Popup 3">
-    </div>
-    <div class="popup" id="popup4">
-        <img src="https://i0.wp.com/freddyreyes.com/wp-content/uploads/2018/03/xp-sp2-8.png?fit=625%2C464&ssl=1" alt="Popup 4">
-    </div>
-    <div class="popup" id="popup5">
-        <img src="https://media.tenor.com/esO1vsykewsAAAAe/popup-ad-popup-ads.png" alt="Popup 5">
-    </div>
-    <!-- Add more popups here if needed -->
-
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const popups = document.querySelectorAll('.popup');
-            let popupCount = 0;
-            let popupInterval = setInterval(function() {
-                if (popupCount < popups.length) {
-                    const popup = popups[popupCount];
-                    popup.style.display = 'block';
-                    popup.style.animation = 'popUpAnimation 1s ease-out';
-                    popupCount++;
-                } else {
-                    clearInterval(popupInterval);
-                    setTimeout(function() {
-                        window.location.href = "home.html"; // Redirect to the home page after pop-ups fill the screen
-                    }, 500); // Adjust the delay before redirection if necessary
-                }
-            }, 200); // Popups appear every 200ms
+        // Array of pop-up images and GIFs
+        const popups = [
+            "https://www.inmotionhosting.com/support/wp-content/uploads/2011/08/hosts-file-change_windows10-notification.png",
+            "https://www.lifewire.com/thmb/xx1BscBaeRPP7UC8D77h540l7YI=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/windows-xp-pro-setup-format-ntfs-5a68f10efa6bcc00366e5bbb.png",
+            "https://www.top-password.com/images/windows-xp-classic-login.png",
+            "https://pbs.twimg.com/media/GSuMWbLXUAAi2li.png:large",
+            "https://images.sftcdn.net/images/t_app-cover-l,f_auto/p/780c22c6-9a65-11e6-a8e9-00163ed833e7/1990850801/msn-messenger-MSN_Messenger_7.5.0299.png",
+            "https://danielteacheruk.wordpress.com/wp-content/uploads/2016/04/prt_259x229_1402895538.gif?w=339&h=300",
+            "https://i.sstatic.net/5dN1R.png",
+            "https://static.wikia.nocookie.net/obsoletebattleshow/images/9/96/Popup2024.png/revision/latest?cb=20241204214634",
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Scareware_example_popup.webp/634px-Scareware_example_popup.webp.png",
+            "https://i0.wp.com/freddyreyes.com/wp-content/uploads/2018/03/xp-sp2-8.png?fit=625%2C464&ssl=1",
+            "https://media.tenor.com/esO1vsykewsAAAAe/popup-ad-popup-ads.png",
+            "https://static.wikia.nocookie.net/omori/images/7/7e/Download_Window_%28Neutral%29.gif/revision/latest/thumbnail/width/360/height/360?cb=20210410001021",
+            "https://cdn.adtidy.org/public/Adguard/Website/Images/seo/en/block_popups/giphy3.gif?mw=1360",
+            "https://burubado.com/cdn/shop/products/2_a78483fd-cb37-40ba-8cf4-ea2c7b73e7f9.png?v=1571564518",
+            "https://tech4world.net/wp-content/uploads/2010/07/you-are-pregnant-funny-error-messages.png",
+            "https://blogs.quickheal.com/wp-content/uploads/2014/06/popup-advertisment.jpg",
+            "https://www.timmermansmedia.nl/wp-content/uploads/2021/09/website-pop-ups.jpg",
+            "https://png.pngtree.com/png-clipart/20210724/ourmid/pngtree-web-page-system-pop-up-window-error-warning-retro-serious-png-image_3727038.jpg"
+        ];
 
-            // After 5 seconds, apply fade-out to all popups
-            setTimeout(function() {
-                popups.forEach(popup => {
-                    popup.classList.add('fadeOut');
-                });
-            }, 5000); // Fade out all popups after 5 seconds
+        const createPopup = (src) => {
+            const img = document.createElement('img');
+            img.src = src;
+            img.className = 'popup';
+            img.style.top = `${Math.random() * 100}vh`;
+            img.style.left = `${Math.random() * 100}vw`;
+            img.style.width = `${Math.random() * 200 + 100}px`; // Random size for images
+            document.body.appendChild(img);
+        };
+
+        // Generate popups at random intervals
+        let delay = 0;
+        popups.forEach((popup) => {
+            setTimeout(() => createPopup(popup), delay);
+            delay += Math.random() * 500; // Random delay between 0 and 500ms
         });
-    </script>
 
+        // Redirect after 5 seconds
+        setTimeout(() => {
+            window.location.href = "home.html"; // Change this to your home page URL
+        }, 5000);
+    </script>
 </body>
 </html>
