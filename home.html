@@ -77,10 +77,21 @@
         }
 
         /* Image Placeholders Styling */
-        .embed-container img {
-            width: 100%;
-            height: 352px;
+        .image-placeholder-container {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 20px;
+            margin: 30px auto;
+            max-width: 100%;
+            padding: 0 20px;
+            justify-items: center; /* Center images in grid */
+        }
+
+        .image-placeholder-container img {
+            width: 300px;
+            height: 300px;
             border-radius: 12px;
+            background-color: #333;
         }
 
         /* Responsive Design for Mobile */
@@ -106,6 +117,10 @@
             .embed-container {
                 grid-template-columns: repeat(2, 1fr);
             }
+
+            .image-placeholder-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
 
         /* Further adjustments for smaller screens */
@@ -121,6 +136,10 @@
             }
 
             .embed-container {
+                grid-template-columns: 1fr;
+            }
+
+            .image-placeholder-container {
                 grid-template-columns: 1fr;
             }
         }
@@ -141,23 +160,38 @@
 
     <!-- Embed Spotify Tracks -->
     <div class="embed-container">
-        <!-- Image Placeholder for Kane - Gunchester -->
-        <img src="https://via.placeholder.com/400x352/000000/FFFFFF?text=Kane+-+Gunchester" alt="Kane - Gunchester">
-        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/album/6mBqb0YHUftrIvqfQtQgxR?utm_source=generator" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        <iframe src="https://open.spotify.com/embed/track/5JZJ73lmqJgCzYP5bQw33b?utm_source=generator" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        <iframe src="https://open.spotify.com/embed/track/3jDCgR5TM03i3HRLUSdv45?utm_source=generator" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        <iframe src="https://open.spotify.com/embed/track/4jxKTdZ3Y3qK3waiwS3Z3l?utm_source=generator" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        <iframe src="https://open.spotify.com/embed/track/2wu2MuaLEAyOgu4HlJA4aE?utm_source=generator" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        <iframe src="https://open.spotify.com/embed/track/0PoBiECB3RmymogexELgNL?utm_source=generator" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+    </div>
 
-        <!-- Image Placeholder for Kane - On Road -->
-        <img src="https://via.placeholder.com/400x352/000000/FFFFFF?text=Kane+-+On+Road" alt="Kane - On Road">
-        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/3jDCgR5TM03i3HRLUSdv45?utm_source=generator" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+    <!-- Image Placeholders -->
+    <div class="image-placeholder-container">
+        <img src="https://via.placeholder.com/300x300" alt="Image 1">
+        <img src="https://via.placeholder.com/300x300" alt="Image 2">
+        <img src="https://via.placeholder.com/300x300" alt="Image 3">
+        <img src="https://via.placeholder.com/300x300" alt="Image 4">
+        <img src="https://via.placeholder.com/300x300" alt="Image 5">
 
-        <!-- Image Placeholder for other tracks -->
-        <img src="https://via.placeholder.com/400x352/000000/FFFFFF?text=Track+3" alt="Track 3">
-        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/4jxKTdZ3Y3qK3waiwS3Z3l?utm_source=generator" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        <img src="https://via.placeholder.com/300x300" alt="Image 6">
+        <img src="https://via.placeholder.com/300x300" alt="Image 7">
+        <img src="https://via.placeholder.com/300x300" alt="Image 8">
+        <img src="https://via.placeholder.com/300x300" alt="Image 9">
+        <img src="https://via.placeholder.com/300x300" alt="Image 10">
 
-        <img src="https://via.placeholder.com/400x352/000000/FFFFFF?text=Track+4" alt="Track 4">
-        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/2wu2MuaLEAyOgu4HlJA4aE?utm_source=generator" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        <img src="https://via.placeholder.com/300x300" alt="Image 11">
+        <img src="https://via.placeholder.com/300x300" alt="Image 12">
+        <img src="https://via.placeholder.com/300x300" alt="Image 13">
+        <img src="https://via.placeholder.com/300x300" alt="Image 14">
+        <img src="https://via.placeholder.com/300x300" alt="Image 15">
 
-        <img src="https://via.placeholder.com/400x352/000000/FFFFFF?text=Track+5" alt="Track 5">
-        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/0PoBiECB3RmymogexELgNL?utm_source=generator" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        <img src="https://via.placeholder.com/300x300" alt="Image 16">
+        <img src="https://via.placeholder.com/300x300" alt="Image 17">
+        <img src="https://via.placeholder.com/300x300" alt="Image 18">
+        <img src="https://via.placeholder.com/300x300" alt="Image 19">
+        <img src="https://via.placeholder.com/300x300" alt="Image 20">
     </div>
 
 </body>
