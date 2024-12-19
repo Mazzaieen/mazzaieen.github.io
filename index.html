@@ -6,76 +6,80 @@
     <title>Enter Page</title>
     <style>
         body {
-            background-color: #000;
-            font-family: 'Arial', sans-serif;
+            background-image: url('https://upload.wikimedia.org/wikipedia/commons/e/ec/Windows_XP_Logo_2006.png'); /* Windows XP background */
+            background-size: cover;
             margin: 0;
-            padding: 0;
-            overflow: hidden;
+            font-family: Tahoma, Arial, sans-serif;
+            cursor: url('https://upload.wikimedia.org/wikipedia/commons/3/3c/Windows_XP_mouse_cursor.png'), auto; /* Windows XP Mouse */
         }
 
-        /* Main Pop-Up Window Styles */
+        /* Windows XP Style Pop-Up */
         .pop-up {
             position: absolute;
             width: 400px;
             height: 160px;
-            background-color: #ffffff;
-            border: 2px solid #000;
+            background-color: #f1f1f1;
+            border: 2px solid #000080; /* Blue border for XP-style window */
             border-radius: 5px;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
             display: none;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+            box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
         }
 
-        /* Title bar resembling old Windows Alert Box */
+        /* Title bar with Windows XP Style */
         .pop-up-header {
-            background-color: #0033cc; /* Blue header */
-            color: #ffffff;
-            padding: 5px 10px;
-            font-weight: bold;
+            background-color: #1e3a5e; /* Windows XP Blue Title Bar */
+            color: white;
+            padding: 3px;
             font-size: 14px;
+            font-weight: bold;
             text-align: center;
             border-top-left-radius: 5px;
             border-top-right-radius: 5px;
-            border-bottom: 2px solid #000;
+            border-bottom: 2px solid #000080;
+            box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
         }
 
-        /* Body of the Pop-Up */
+        /* Content Area of the Pop-Up */
         .pop-up-body {
             padding: 10px;
             color: #000;
             font-size: 12px;
             line-height: 1.5;
-            border-bottom: 2px solid #000;
         }
 
-        /* OK Button */
+        /* "OK" Button Styled to Match Windows XP */
         .pop-up-button {
-            display: block;
-            background-color: #ff0000;
+            display: inline-block;
+            background-color: #5e8b00; /* Windows XP Button Green */
             color: white;
-            padding: 5px 10px;
-            border: none;
-            margin: 10px auto;
+            padding: 5px 15px;
+            border: 1px solid #38761d; /* Darker Green Border */
+            margin: 10px;
             cursor: pointer;
             border-radius: 3px;
             font-size: 12px;
-            width: 80px;
             text-align: center;
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
+            width: 80px;
         }
 
         .pop-up-button:hover {
-            background-color: #cc0000;
+            background-color: #4c7000; /* Hover Green */
         }
 
-        /* Trash Bin Icon */
+        .pop-up-button:active {
+            background-color: #3d5800; /* Active State */
+        }
+
+        /* Trash Bin Animation */
         .trash-bin {
             position: absolute;
             width: 80px;
             height: 80px;
-            background-color: #cccccc;
+            background-color: #d3d3d3;
             border-radius: 50%;
             left: 50%;
             transform: translateX(-50%);
@@ -91,8 +95,8 @@
             display: block;
         }
 
-        /* Animation for Pop-Up */
-        @keyframes errorPopUp {
+        /* Animations */
+        @keyframes popUpAnim {
             0% { top: -150px; }
             25% { top: 50%; }
             50% { top: 45%; }
@@ -100,27 +104,27 @@
             100% { top: 50%; }
         }
 
-        @keyframes trashBinEffect {
+        @keyframes trashBinAnim {
             0% { bottom: 60px; opacity: 1; }
             100% { bottom: -50px; opacity: 0; }
         }
 
-        .error-effect {
-            animation: errorPopUp 1s ease forwards;
+        .pop-up-show {
+            animation: popUpAnim 1s ease forwards;
         }
 
-        .trash-bin-effect {
-            animation: trashBinEffect 1s ease-in-out forwards;
+        .trash-bin-show {
+            animation: trashBinAnim 1s ease-in-out forwards;
         }
 
-        /* Windows-like Icon and Button Hover Effects */
+        /* Additional Window Button Style */
         .button-container {
             display: flex;
-            justify-content: space-around;
+            justify-content: center;
             margin-top: 10px;
         }
 
-        .button {
+        .window-button {
             background-color: #dcdcdc;
             border: 1px solid #000;
             padding: 5px 15px;
@@ -130,11 +134,11 @@
             box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5);
         }
 
-        .button:hover {
+        .window-button:hover {
             background-color: #b0b0b0;
         }
 
-        .button:active {
+        .window-button:active {
             background-color: #999999;
         }
 
@@ -143,19 +147,19 @@
 <body>
 
     <!-- Error Pop-Ups -->
-    <div class="pop-up error-popup1">
+    <div class="pop-up pop-up1">
         <div class="pop-up-header">Security Alert</div>
         <div class="pop-up-body">Critical error! System malfunction detected.</div>
         <button class="pop-up-button" onclick="showError(2)">OK</button>
     </div>
 
-    <div class="pop-up error-popup2">
+    <div class="pop-up pop-up2">
         <div class="pop-up-header">Security Alert</div>
         <div class="pop-up-body">Error 404: File not found. Your computer is at risk!</div>
         <button class="pop-up-button" onclick="showError(3)">OK</button>
     </div>
 
-    <div class="pop-up error-popup3">
+    <div class="pop-up pop-up3">
         <div class="pop-up-header">Security Alert</div>
         <div class="pop-up-body">Warning: Unauthorized access detected. System compromised!</div>
         <button class="pop-up-button" onclick="showTrashBin()">OK</button>
@@ -170,17 +174,17 @@
         function showError(popupNumber) {
             const popups = document.querySelectorAll('.pop-up');
             popups.forEach(popup => popup.style.display = 'none'); // Hide all popups
-            
+
             if (popupNumber <= popups.length) {
-                const popup = document.querySelector(`.error-popup${popupNumber}`);
-                popup.classList.add('error-effect');
+                const popup = document.querySelector(`.pop-up${popupNumber}`);
+                popup.classList.add('pop-up-show');
                 popup.style.display = 'block'; // Show the specific popup
             }
         }
 
         function showTrashBin() {
             const trashBin = document.querySelector('.trash-bin');
-            trashBin.classList.add('trash-bin-effect');
+            trashBin.classList.add('trash-bin-show');
             trashBin.style.display = 'block'; // Show trash bin
             setTimeout(function() {
                 window.location.href = 'https://mazzaieen.github.io/home.html'; // Redirect after animation
