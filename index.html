@@ -18,8 +18,8 @@
         /* Style for pop-up windows (static PNG images + GIFs) */
         .popup {
             position: absolute;
-            width: 200px;
-            height: 150px;
+            width: 300px;
+            height: 200px;
             z-index: 9999;
             display: block;
         }
@@ -32,60 +32,62 @@
 
         /* For smaller Tubidy logo */
         .tubidy-logo img {
-            width: 120px; /* Adjusted size to make it smaller */
+            width: 150px; /* Adjust size to make it smaller */
             height: auto;
         }
     </style>
 </head>
 <body>
     <script>
-        // List of your pop-up images
+        // List of your authentic Windows pop-up PNGs and GIFs, excluding the removed images
         const popUpImages = [
-            'https://www.inmotionhosting.com/support/wp-content/uploads/2011/08/hosts-file-change_windows10-notification.png', // Windows 10 notification
-            'https://www.lifewire.com/thmb/xx1BscBaeRPP7UC8D77h540l7YI=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/windows-xp-classic-login.png', // Windows XP setup format
+            'https://www.inmotionhosting.com/support/wp-content/uploads/2011/08/hosts-file-change_windows10-notification.png', // Image you provided
+            'https://www.lifewire.com/thmb/xx1BscBaeRPP7UC8D77h540l7YI=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/windows-xp-pro-setup-format-ntfs-5a68f10efa6bcc00366e5bbb.png', // Windows XP setup format
+            'https://www.top-password.com/images/windows-xp-classic-login.png', // Windows XP classic login
             'https://pbs.twimg.com/media/GSuMWbLXUAAi2li.png:large', // Another pop-up
             'https://images.sftcdn.net/images/t_app-cover-l,f_auto/p/780c22c6-9a65-11e6-a8e9-00163ed833e7/1990850801/msn-messenger-MSN_Messenger_7.5.0299.png', // MSN Messenger
-            'https://i.sstatic.net/5dN1R.png', // Pop-up image
-            'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Tubidy_Logo.svg/430px-Tubidy_Logo.svg.png', // Tubidy logo (smaller now)
+            'https://i.sstatic.net/5dN1R.png', // Pop-up 5
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Tubidy_Logo.svg/430px-Tubidy_Logo.svg.png', // Tubidy logo (new image you requested)
             'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Scareware_example_popup.webp/634px-Scareware_example_popup.webp.png', // Scareware example
-            'https://i0.wp.com/freddyreyes.com/wp-content/uploads/2018/08/corrupted-windows-login.jpg?fit=1200%2C900&ssl=1', // Corrupted Windows login
-            'https://www.gravatar.com/avatar/fd170d013d68d9a2d13b52442ca354f8.png' // Another pop-up
+            'https://i0.wp.com/freddyreyes.com/wp-content/uploads/2018/03/xp-sp2-8.png?fit=625%2C464&ssl=1', // Windows XP SP2 pop-up
+            'https://media.tenor.com/esO1vsykewsAAAAe/popup-ad-popup-ads.png', // Pop-up 7
+            'https://burubado.com/cdn/shop/products/2_a78483fd-cb37-40ba-8cf4-ea2c7b73e7f9.png?v=1571564518', // Pop-up 8
+            'https://tech4world.net/wp-content/uploads/2010/07/you-are-pregnant-funny-error-messages.png', // Pop-up 9
+            'https://blogs.quickheal.com/wp-content/uploads/2014/06/popup-advertisment.jpg', // Pop-up 10
         ];
 
-        // Function to generate random position for each pop-up
+        // Function to generate random positions on the screen
         function getRandomPosition() {
-            const x = Math.floor(Math.random() * (window.innerWidth - 200));
-            const y = Math.floor(Math.random() * (window.innerHeight - 150));
+            const x = Math.floor(Math.random() * (window.innerWidth - 300)); // X position
+            const y = Math.floor(Math.random() * (window.innerHeight - 200)); // Y position
             return { x, y };
         }
 
-        // Function to create and show pop-ups
-        function showPopUps() {
-            const popupCount = 30; // Adjust the number of pop-ups to be shown on the screen at once
-            for (let i = 0; i < popupCount; i++) {
-                const randomImage = popUpImages[Math.floor(Math.random() * popUpImages.length)];
-                const position = getRandomPosition();
+        // Function to show pop-ups (images and GIFs)
+        function showPopUp() {
+            const popUp = document.createElement('div');
+            const { x, y } = getRandomPosition();
+            popUp.style.left = `${x}px`;
+            popUp.style.top = `${y}px`;
 
-                const popup = document.createElement('div');
-                popup.classList.add('popup');
-                popup.style.left = position.x + 'px';
-                popup.style.top = position.y + 'px';
-
-                const img = document.createElement('img');
-                img.src = randomImage;
-                popup.appendChild(img);
-
-                document.body.appendChild(popup);
-            }
+            // Create an image pop-up
+            const image = document.createElement('img');
+            image.src = popUpImages[Math.floor(Math.random() * popUpImages.length)];
+            popUp.classList.add('popup');
+            popUp.appendChild(image);
+            
+            document.body.appendChild(popUp);
         }
 
-        // Show pop-ups every 50ms (adjust the frequency of appearance)
-        setInterval(showPopUps, 50); // Increased frequency, making it faster
+        // Show pop-ups more frequently (adjusted interval for faster pop-ups)
+        setInterval(() => {
+            showPopUp();
+        }, 50); // Pop-ups show every 0.05 second (faster)
 
-        // Redirect the page after 5 seconds (5000ms)
+        // Redirect after 5 seconds
         setTimeout(() => {
-            window.location.href = 'https://yourhomepage.com'; // Redirect to the homepage or any URL of your choice
-        }, 5000); // 5 seconds
+            window.location.href = 'home.html';
+        }, 5000); // 5 seconds before redirect
     </script>
 </body>
 </html>
