@@ -16,7 +16,7 @@
             overflow-x: hidden;
         }
 
-        /* Dropdown Menu Styles (Improved) */
+        /* Navigation Styles */
         nav {
             background-color: rgba(0, 0, 0, 0.8);
             padding: 15px 20px;
@@ -24,57 +24,24 @@
             top: 0;
             width: 100%;
             z-index: 100;
+            text-align: center;
         }
 
-        .dropdown {
-            position: relative;
-            display: inline-block;
-            margin: 0 20px;
-        }
-
-        .dropbtn {
-            background-color: transparent;
+        nav a {
             color: white;
             font-size: 18px;
             padding: 12px 25px;
-            border: 2px solid white;
-            cursor: pointer;
+            text-decoration: none;
             font-family: 'Helvetica', sans-serif;
             text-transform: uppercase;
             font-weight: bold;
+            margin: 0 15px;
             transition: background-color 0.3s ease, color 0.3s ease;
         }
 
-        .dropbtn:hover {
+        nav a:hover {
             background-color: #ff5c8d;
             color: black;
-        }
-
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: #333;
-            min-width: 160px;
-            z-index: 1;
-            margin-top: 5px;
-            border-radius: 5px;
-        }
-
-        .dropdown-content a {
-            color: white;
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-            font-family: 'Helvetica', sans-serif;
-        }
-
-        .dropdown-content a:hover {
-            background-color: #ff5c8d;
-            color: black;
-        }
-
-        .dropdown:hover .dropdown-content {
-            display: block;
         }
 
         /* Title above the portfolio */
@@ -107,26 +74,9 @@
 </head>
 <body>
     <nav>
-        <div class="dropdown">
-            <button class="dropbtn">Store</button>
-            <div class="dropdown-content">
-                <a href="store.html">Products</a>
-                <a href="store.html">Sales</a>
-                <a href="store.html">New Arrivals</a>
-            </div>
-        </div>
-        <div class="dropdown">
-            <button class="dropbtn">About</button>
-            <div class="dropdown-content">
-                <a href="about.html">Company Info</a>
-            </div>
-        </div>
-        <div class="dropdown">
-            <button class="dropbtn">Contact</button>
-            <div class="dropdown-content">
-                <a href="contact.html">Email</a>
-            </div>
-        </div>
+        <a href="store.html">Store</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
     </nav>
 
     <!-- Portfolio Title -->
