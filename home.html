@@ -61,15 +61,11 @@
             height: auto;
         }
 
-        .portfolio-item img, .portfolio-item video {
+        .portfolio-item img {
             width: 100%;
             height: auto;
             display: block;
-        }
-
-        /* Style to create the image placeholders */
-        .portfolio-item img {
-            background-color: #ddd;
+            background-color: #ddd; /* Placeholder background color */
         }
 
         /* Remove any default margins */
@@ -101,21 +97,11 @@
                 const portfolioItem = document.createElement("div");
                 portfolioItem.classList.add("portfolio-item");
 
-                // Randomly add either an image or video placeholder
-                if (Math.random() < 0.5) {
-                    const img = document.createElement("img");
-                    img.src = "https://via.placeholder.com/300";
-                    img.alt = `Portfolio Image ${i+1}`;
-                    portfolioItem.appendChild(img);
-                } else {
-                    const video = document.createElement("video");
-                    video.controls = true;
-                    const source = document.createElement("source");
-                    source.src = "https://www.w3schools.com/html/mov_bbb.mp4"; // Replace with your video link
-                    source.type = "video/mp4";
-                    video.appendChild(source);
-                    portfolioItem.appendChild(video);
-                }
+                // Add an image placeholder
+                const img = document.createElement("img");
+                img.src = "https://via.placeholder.com/300"; // Placeholder image URL
+                img.alt = `Portfolio Image ${i+1}`;
+                portfolioItem.appendChild(img);
 
                 portfolioGrid.appendChild(portfolioItem);
             }
@@ -132,20 +118,11 @@
                     const portfolioItem = document.createElement("div");
                     portfolioItem.classList.add("portfolio-item");
 
-                    if (Math.random() < 0.5) {
-                        const img = document.createElement("img");
-                        img.src = "https://via.placeholder.com/300";
-                        img.alt = `Portfolio Image ${document.querySelectorAll('.portfolio-item').length + 1}`;
-                        portfolioItem.appendChild(img);
-                    } else {
-                        const video = document.createElement("video");
-                        video.controls = true;
-                        const source = document.createElement("source");
-                        source.src = "https://www.w3schools.com/html/mov_bbb.mp4"; // Replace with your video link
-                        source.type = "video/mp4";
-                        video.appendChild(source);
-                        portfolioItem.appendChild(video);
-                    }
+                    // Add an image placeholder
+                    const img = document.createElement("img");
+                    img.src = "https://via.placeholder.com/300"; // Placeholder image URL
+                    img.alt = `Portfolio Image ${document.querySelectorAll('.portfolio-item').length + 1}`;
+                    portfolioItem.appendChild(img);
 
                     portfolioGrid.appendChild(portfolioItem);
                 }
