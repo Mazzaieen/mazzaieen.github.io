@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pop-up Page</title>
     <style>
-        /* Set the background to the new GIF image */
+        /* Set the background to the new image from Reddit */
         body {
-            background: url('https://i.redd.it/qkdj3klvtxn71.gif') no-repeat center center fixed;
+            background: url('https://external-preview.redd.it/uhq5zTcMPM3tOW_fbUz4PayDt_5pkEXdyXXoRWs3XOg.jpg?auto=webp&s=e06461124c1ccfdba7e9ece763b644ff68eeb06b') no-repeat center center fixed;
             background-size: cover;
             margin: 0;
             padding: 0;
@@ -47,7 +47,7 @@
 </head>
 <body>
     <script>
-        // List of your authentic Windows pop-up PNGs and GIFs including Wikipedia ones
+        // List of your authentic Windows pop-up PNGs and GIFs
         const popUpImages = [
             'https://www.inmotionhosting.com/support/wp-content/uploads/2011/08/hosts-file-change_windows10-notification.png', // Image you provided
             'https://www.lifewire.com/thmb/xx1BscBaeRPP7UC8D77h540l7YI=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/windows-xp-pro-setup-format-ntfs-5a68f10efa6bcc00366e5bbb.png', // Windows XP setup format
@@ -58,19 +58,12 @@
             'https://static.wikia.nocookie.net/obsoletebattleshow/images/9/96/Popup2024.png/revision/latest?cb=20241204214634', // Pop-up 6
             'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Scareware_example_popup.webp/634px-Scareware_example_popup.webp.png', // Scareware example
             'https://i0.wp.com/freddyreyes.com/wp-content/uploads/2018/03/xp-sp2-8.png?fit=625%2C464&ssl=1', // Windows XP SP2 pop-up
-            'https://media.tenor.com/esO1vsykewsAAAAe/popup-ad-popup-ads.png' // Pop-up 7
-        ];
-
-        // List of YouTube video URLs to be used as pop-ups
-        const videoUrls = [
-            'https://www.youtube.com/watch?v=4ih5qjPWPE4',
-            'https://www.youtube.com/watch?v=jiK9azOHMrw',
-            'https://www.youtube.com/watch?v=Wgp0F04a0wQ',
-            'https://www.youtube.com/watch?v=b15IuwPnh-s',
-            'https://www.youtube.com/watch?v=vGTX9y5ZbyA',
-            'https://www.youtube.com/watch?v=Wqn3Lcjudvk',
-            'https://www.youtube.com/watch?v=z1ZQ7cpbGLs',
-            'https://www.youtube.com/watch?v=as7Vm4Y5ku0'
+            'https://media.tenor.com/esO1vsykewsAAAAe/popup-ad-popup-ads.png', // Pop-up 7
+            'https://burubado.com/cdn/shop/products/2_a78483fd-cb37-40ba-8cf4-ea2c7b73e7f9.png?v=1571564518', // Pop-up 8
+            'https://tech4world.net/wp-content/uploads/2010/07/you-are-pregnant-funny-error-messages.png', // Pop-up 9
+            'https://blogs.quickheal.com/wp-content/uploads/2014/06/popup-advertisment.jpg', // Pop-up 10
+            'https://www.timmermansmedia.nl/wp-content/uploads/2021/09/website-pop-ups.jpg', // Pop-up 11
+            'https://png.pngtree.com/png-clipart/20210724/ourmid/pngtree-web-page-system-pop-up-window-error-warning-retro-serious-png-image_3727038.jpg' // Pop-up 12
         ];
 
         // Function to generate random positions on the screen
@@ -80,40 +73,33 @@
             return { x, y };
         }
 
-        // Function to show pop-ups (images and videos)
-        function showPopUp(type) {
+        // Function to show pop-ups (images and GIFs)
+        function showPopUp() {
             const popUp = document.createElement('div');
             const { x, y } = getRandomPosition();
             popUp.style.left = `${x}px`;
             popUp.style.top = `${y}px`;
 
-            if (type === 'image') {
-                const image = document.createElement('img');
-                image.src = popUpImages[Math.floor(Math.random() * popUpImages.length)];
-                popUp.classList.add('popup');
-                popUp.appendChild(image);
-            } else if (type === 'video') {
-                const iframe = document.createElement('iframe');
-                iframe.src = videoUrls[Math.floor(Math.random() * videoUrls.length)] + '?autoplay=1';
-                iframe.frameborder = '0';
-                iframe.allow = 'autoplay; encrypted-media';
-                popUp.classList.add('popup-video');
-                popUp.appendChild(iframe);
-            }
-
+            // Create an image pop-up
+            const image = document.createElement('img');
+            image.src = popUpImages[Math.floor(Math.random() * popUpImages.length)];
+            popUp.classList.add('popup');
+            popUp.appendChild(image);
+            
             document.body.appendChild(popUp);
-            setTimeout(() => popUp.style.display = 'block', Math.random() * 1000); // Randomize delay
+            setTimeout(() => popUp.style.display = 'block', Math.random() * 1000); // Random delay
+            setTimeout(() => popUp.style.display = 'none', 300); // Hide pop-up after 0.3 seconds
         }
 
-        // Show pop-ups every 1-2 seconds
+        // Show pop-ups every 200 milliseconds (faster, random positions)
         setInterval(() => {
-            showPopUp(Math.random() > 0.5 ? 'image' : 'video'); // Randomly choose image or video
-        }, 1000); // Pop-ups show every 1 second
+            showPopUp();
+        }, 200); // Pop-ups show every 0.2 second
 
-        // Stop the pop-ups after 10 seconds (remove pop-ups and transition to the next page)
+        // Stop the pop-ups after 5 seconds (to make it more erratic)
         setTimeout(() => {
             document.body.innerHTML = '<h1>Welcome to the Home Page</h1>';
-        }, 10000); // 10 seconds after loading the page
+        }, 5000); // 5 seconds after loading the page
     </script>
 </body>
 </html>
