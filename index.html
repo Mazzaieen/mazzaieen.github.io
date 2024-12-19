@@ -32,8 +32,16 @@
 
         /* For smaller Tubidy logo */
         .tubidy-logo img {
-            width: 120px; /* Adjust size to make it smaller */
+            width: 80px; /* Adjust size to make it smaller */
             height: auto;
+        }
+
+        /* Fallback for broken images */
+        .popup img:empty {
+            background-color: #f0f0f0;
+            text-align: center;
+            line-height: 200px;
+            color: #999;
         }
     </style>
 </head>
@@ -55,11 +63,11 @@
             'https://tech4world.net/wp-content/uploads/2010/07/you-are-pregnant-funny-error-messages.png', // Pop-up 9
             'https://blogs.quickheal.com/wp-content/uploads/2014/06/popup-advertisment.jpg', // Pop-up 10
 
-            // Adding Behance image URLs (use direct image links)
-            'https://www.behance.net/gallery/193598563/NICO/image1.jpg', // Example Behance image (replace with actual image URL)
-            'https://www.behance.net/gallery/190929507/_/image1.jpg', // Example Behance image
-            'https://www.behance.net/gallery/190928335/_/image1.jpg', // Example Behance image
-            'https://www.behance.net/gallery/190929923/_/image1.jpg', // Example Behance image
+            // Adding Behance image URLs (these won't show unless they are direct image links)
+            'https://www.behance.net/gallery/193598563/NICO', // Example Behance image (replace with actual image URL)
+            'https://www.behance.net/gallery/190929507/_', // Example Behance image
+            'https://www.behance.net/gallery/190928335/_', // Example Behance image
+            'https://www.behance.net/gallery/190929923/_', // Example Behance image
         ];
 
         // Function to generate random positions on the screen
@@ -79,6 +87,10 @@
             // Create an image pop-up
             const image = document.createElement('img');
             image.src = popUpImages[Math.floor(Math.random() * popUpImages.length)];
+            image.alt = 'Pop-up image';  // Fallback in case the image is not available
+            image.onerror = function() {  // Fallback if the image doesn't load
+                image.src = 'https://via.placeholder.com/300x200.png?text=Image+Not+Found';  // Placeholder if error
+            };
             popUp.classList.add('popup');
             popUp.appendChild(image);
             
