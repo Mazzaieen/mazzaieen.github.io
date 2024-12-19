@@ -33,7 +33,7 @@
 </head>
 <body>
     <script>
-        // List of your authentic Windows pop-up PNGs and GIFs
+        // List of your authentic Windows pop-up PNGs and GIFs, including the new images
         const popUpImages = [
             'https://www.inmotionhosting.com/support/wp-content/uploads/2011/08/hosts-file-change_windows10-notification.png', // Image you provided
             'https://www.lifewire.com/thmb/xx1BscBaeRPP7UC8D77h540l7YI=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/windows-xp-pro-setup-format-ntfs-5a68f10efa6bcc00366e5bbb.png', // Windows XP setup format
@@ -41,13 +41,20 @@
             'https://pbs.twimg.com/media/GSuMWbLXUAAi2li.png:large', // Another pop-up
             'https://images.sftcdn.net/images/t_app-cover-l,f_auto/p/780c22c6-9a65-11e6-a8e9-00163ed833e7/1990850801/msn-messenger-MSN_Messenger_7.5.0299.png', // MSN Messenger
             'https://i.sstatic.net/5dN1R.png', // Pop-up 5
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Tubidy_Logo.svg/430px-Tubidy_Logo.svg.png', // Tubidy logo (new image you requested)
             'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Scareware_example_popup.webp/634px-Scareware_example_popup.webp.png', // Scareware example
             'https://i0.wp.com/freddyreyes.com/wp-content/uploads/2018/03/xp-sp2-8.png?fit=625%2C464&ssl=1', // Windows XP SP2 pop-up
             'https://media.tenor.com/esO1vsykewsAAAAe/popup-ad-popup-ads.png', // Pop-up 7
             'https://burubado.com/cdn/shop/products/2_a78483fd-cb37-40ba-8cf4-ea2c7b73e7f9.png?v=1571564518', // Pop-up 8
             'https://tech4world.net/wp-content/uploads/2010/07/you-are-pregnant-funny-error-messages.png', // Pop-up 9
             'https://blogs.quickheal.com/wp-content/uploads/2014/06/popup-advertisment.jpg', // Pop-up 10
-            'https://png.pngtree.com/png-clipart/20210724/ourmid/pngtree-web-page-system-pop-up-window-error-warning-retro-serious-png-image_3727038.jpg' // Pop-up 12
+            'https://www.timmermansmedia.nl/wp-content/uploads/2021/09/website-pop-ups.jpg', // Pop-up 11
+            'https://png.pngtree.com/png-clipart/20210724/ourmid/pngtree-web-page-system-pop-up-window-error-warning-retro-serious-png-image_3727038.jpg', // Pop-up 12
+            'https://www.reddit.com/media?url=https%3A%2F%2Fi.redd.it%2Fp8mw4nwllsu21.png', // New image you requested
+            'https://www.clash.ninja/images/entities/1_2.png', // New image 1
+            'https://www.clash.ninja/images/entities/1_7.png', // New image 2
+            'https://i.pinimg.com/originals/0a/b5/8d/0ab58dbb752eb6276c4eafa15484a3dc.png', // New image 3
+            'https://static.wikia.nocookie.net/clashofclans/images/e/e0/Town_Hall9.png/revision/latest/scale-to-width-down/300?cb=20170827045259' // New image 4
         ];
 
         // Function to generate random positions on the screen
@@ -71,6 +78,8 @@
             popUp.appendChild(image);
             
             document.body.appendChild(popUp);
+            setTimeout(() => popUp.style.display = 'block', Math.random() * 1000); // Random delay
+            setTimeout(() => popUp.style.display = 'none', 8000); // Hide pop-up after 8 seconds
         }
 
         // Show pop-ups every 200 milliseconds (faster, random positions)
@@ -78,10 +87,10 @@
             showPopUp();
         }, 200); // Pop-ups show every 0.2 second
 
-        // Redirect to the home page after 8 seconds
+        // Redirect after 8 seconds
         setTimeout(() => {
-            window.location.href = 'https://yourhomepage.com'; // Replace with the actual homepage URL
-        }, 8000); // 8 seconds before redirecting
+            window.location.href = 'home.html';
+        }, 8000); // 8 seconds before redirect
     </script>
 </body>
 </html>
