@@ -1,1 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Mazzaieen</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #222;
+            color: white;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            position: relative;
+        }
+
+        /* The Enter button */
+        #enter-btn {
+            font-size: 20px;
+            padding: 15px 30px;
+            background-color: #008CBA;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            border-radius: 10px;
+            animation: blink 1s infinite alternate;
+        }
+
+        @keyframes blink {
+            0% { opacity: 1; }
+            100% { opacity: 0.5; }
+        }
+
+        /* Popup windows style */
+        .popup {
+            width: 300px;
+            height: 150px;
+            position: absolute;
+            background-color: #00FF00;
+            border: 2px solid #0A0;
+            border-radius: 10px;
+            box-shadow: 0 0 10px #0A0;
+            display: none;
+            padding: 20px;
+            color: #000;
+            font-size: 16px;
+            z-index: 999;
+        }
+
+        .popup-header {
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .trash {
+            position: absolute;
+            bottom: 20px;
+            right: 10%;
+            width: 50px;
+            height: 50px;
+            background-color: #999;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 25px;
+            z-index: 1000;
+        }
+
+        #trash-bin {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <button id="enter-btn" onclick="triggerPopups()">Enter</button>
+
+    <div class="popup" id="popup1">
+        <div class="popup-header">ERROR</div>
+        <p>System failure detected. Please restart!</p>
+    </div>
+    <div class="popup" id="popup2">
+        <div class="popup-header">ERROR</div>
+        <p>Corruption detected in the system files. Critical issue.</p>
+    </div>
+    <div class="popup" id="popup3">
+        <div class="popup-header">ERROR</div>
+        <p>Warning! A virus has been detected!</p>
+    </div>
+
+    <div id="trash-bin" class="trash">🗑️</div>
+
+    <script>
+        let popupCount = 0;
+
+        // Function to trigger popups and simulate error message
+        function triggerPopups() {
+            const popups = ['popup1', 'popup2', 'popup3'];
+            let trashBin = document.getElementById('trash-bin');
+            trashBin.style.display = 'flex';
+            
+            // Show popups with a delay and remove them to simulate virus effect
+            function showPopup() {
+                if (popupCount < popups.length) {
+                    let popup = document.getElementById(popups[popupCount]);
+                    popup.style.display = 'block';
+                    popupCount++;
+
+                    setTimeout(function() {
+                        // Move popup to the trash
+                        popup.style.transform = 'translate(400px, 300px)';
+                        popup.style.opacity = 0;
+
+                        // Simulate trash bin animation
+                        setTimeout(function() {
+                            popup.style.display = 'none';
+                            if (popupCount === popups.length) {
+                                // After all popups disappear, redirect to the homepage
+                                window.location.href = 'home.html';
+                            }
+                        }, 1000);
+                    }, 1000);
+                }
+            }
+
+            // Show popups every 2 seconds
+            let popupInterval = setInterval(showPopup, 2000);
+            
+            // Stop showing popups after all are shown
+            setTimeout(() => {
+                clearInterval(popupInterval);
+            }, popups.length * 2000);
+        }
+    </script>
+</body>
+</html>
 
