@@ -24,15 +24,41 @@
             display: none;
         }
 
-        /* Additional pop-up images */
         .popup img {
             width: 100%;
             height: 100%;
         }
+
+        /* Start Button - centered */
+        .start-button {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 200px;
+            height: 60px;
+            background-image: url('https://preview.redd.it/lyzpntnmp6r61.jpg?width=900&format=pjpg&auto=webp&s=201dd25c173a88c8a1440627067568ff9b392ea2');
+            background-size: contain;
+            background-repeat: no-repeat;
+            border: none;
+            cursor: pointer;
+            z-index: 10000;
+        }
+
+        .start-button:focus {
+            outline: none;
+        }
+
+        /* Hide all pop-ups initially */
+        .hidden {
+            display: none;
+        }
     </style>
 </head>
 <body>
-    <!-- Pop-up windows will be created dynamically with JS -->
+    <!-- Start Button to trigger the pop-up animation -->
+    <button class="start-button" onclick="startPopUps()"></button>
+
     <script>
         // List of authentic Windows pop-up PNGs including the ones you provided
         const popUpImages = [
@@ -82,21 +108,26 @@
             }, 5000);
         }
 
-        // Create random pop-ups every 300 milliseconds
-        let popUpCount = 0;
-        const popUpLimit = 30; // Create 30 pop-ups
-        const popUpInterval = setInterval(() => {
-            createRandomPopUp();
-            popUpCount++;
+        function startPopUps() {
+            // Hide start button after clicked
+            document.querySelector('.start-button').style.display = 'none';
 
-            if (popUpCount >= popUpLimit) {
-                clearInterval(popUpInterval); // Stop pop-ups after reaching limit
-                setTimeout(() => {
-                    // Transition to the home screen (replace this with your home page logic)
-                    window.location.href = "home.html"; // Replace with your home page URL
-                }, 1000); // Wait 1 second before transitioning
-            }
-        }, 300); // 300ms interval to create pop-ups
+            // Create random pop-ups every 300 milliseconds
+            let popUpCount = 0;
+            const popUpLimit = 30; // Create 30 pop-ups
+            const popUpInterval = setInterval(() => {
+                createRandomPopUp();
+                popUpCount++;
+
+                if (popUpCount >= popUpLimit) {
+                    clearInterval(popUpInterval); // Stop pop-ups after reaching limit
+                    setTimeout(() => {
+                        // Transition to the home screen (replace this with your home page logic)
+                        window.location.href = "home.html"; // Replace with your home page URL
+                    }, 1000); // Wait 1 second before transitioning
+                }
+            }, 300); // 300ms interval to create pop-ups
+        }
     </script>
 </body>
 </html>
