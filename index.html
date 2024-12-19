@@ -21,7 +21,6 @@
             width: 300px;
             height: 200px;
             z-index: 9999;
-            display: none;
         }
 
         .popup img {
@@ -52,14 +51,6 @@
             'https://png.pngtree.com/png-clipart/20210724/ourmid/pngtree-web-page-system-pop-up-window-error-warning-retro-serious-png-image_3727038.jpg'
         ];
 
-        // Identify and remove any broken image URLs
-        const validImages = [];
-        popUpImages.forEach(src => {
-            const img = new Image();
-            img.src = src;
-            img.onload = () => validImages.push(src);
-        });
-
         // Function to generate random positions on the screen
         function getRandomPosition() {
             const x = Math.floor(Math.random() * (window.innerWidth - 300));
@@ -75,18 +66,18 @@
             popUp.style.top = `${y}px`;
 
             const image = document.createElement('img');
-            image.src = validImages[Math.floor(Math.random() * validImages.length)];
+            image.src = popUpImages[Math.floor(Math.random() * popUpImages.length)];
             popUp.classList.add('popup');
             popUp.appendChild(image);
 
             document.body.appendChild(popUp);
-            setTimeout(() => popUp.style.display = 'block', Math.random() * 100); // Pop-ups appear faster
-            setTimeout(() => popUp.style.display = 'none', 200); // Pop-ups disappear quickly
+
+            // Pop-up remains visible, does not disappear
         }
 
         // Rapidly show pop-ups for 8 seconds
         const popUpInterval = setInterval(showPopUp, 100); // Pop-ups appear every 0.1 second
-        setTimeout(() => clearInterval(popUpInterval), 8000); // Stop after 8 seconds
+        setTimeout(() => clearInterval(popUpInterval), 8000); // Stop generating pop-ups after 8 seconds
 
         // Redirect to the home page after 8 seconds
         setTimeout(() => {
