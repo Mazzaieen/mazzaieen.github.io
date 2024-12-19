@@ -5,18 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Windows XP Pop-Up Effect</title>
     <style>
+        /* Background */
         body {
             margin: 0;
             padding: 0;
             font-family: "Tahoma", sans-serif;
-            background-color: #5a87b3; /* Windows XP Background color */
+            background-color: #5a87b3; /* Windows XP Background */
             height: 100vh;
             overflow: hidden;
             position: relative;
             cursor: url('https://upload.wikimedia.org/wikipedia/commons/3/3c/Windows_XP_mouse_cursor.png'), auto;
         }
 
-        /* Windows Pop-up Styling */
+        /* Pop-up Window Styling */
         .popup {
             width: 380px;
             height: 200px;
@@ -30,6 +31,7 @@
             border-radius: 5px;
         }
 
+        /* Header styling for pop-up */
         .popup-header {
             background-color: #1e3a5e;
             color: white;
@@ -42,6 +44,7 @@
             border-bottom: 1px solid #1e3a5e;
         }
 
+        /* Body of the pop-up */
         .popup-body {
             padding: 10px;
             color: black;
@@ -50,27 +53,7 @@
             text-align: center;
         }
 
-        iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        .button {
-            background-color: #dcdcdc;
-            border: 1px solid #000;
-            padding: 5px 15px;
-            cursor: pointer;
-            border-radius: 3px;
-            font-size: 12px;
-            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5);
-            margin-top: 10px;
-        }
-
-        .button:hover {
-            background-color: #b0b0b0;
-        }
-
+        /* Pop-up Animation for Appearance */
         @keyframes popUpAnim {
             0% { transform: scale(0); }
             100% { transform: scale(1); }
@@ -85,10 +68,6 @@
             100% { top: 90%; left: 10%; }
         }
 
-        /* Windows XP style random background */
-        .popup-background {
-            background-color: #c3c3c3;
-        }
     </style>
 </head>
 <body>
