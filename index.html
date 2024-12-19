@@ -3,53 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Enter Page</title>
+    <title>Windows XP Pop-Up Effect with Videos</title>
     <style>
         body {
-            background-image: url('https://upload.wikimedia.org/wikipedia/commons/9/94/Windows_XP_RollTop_Wallpaper.jpg'); /* Windows XP Background */
-            background-size: cover;
             margin: 0;
-            font-family: Tahoma, Arial, sans-serif;
-            cursor: url('https://upload.wikimedia.org/wikipedia/commons/3/3c/Windows_XP_mouse_cursor.png'), auto; /* Windows XP Mouse */
-        }
-
-        /* Windows XP Style Pop-Up */
-        .pop-up {
-            position: absolute;
-            width: 400px;
-            height: 160px;
-            background-color: #f1f1f1;
-            border: 2px solid #000080; /* Blue border for XP-style window */
-            border-radius: 5px;
-            box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
-            display: none;
-            z-index: 100;
+            padding: 0;
             font-family: "Tahoma", sans-serif;
+            background-color: #5a87b3; /* Windows XP background color */
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+            cursor: url('https://upload.wikimedia.org/wikipedia/commons/3/3c/Windows_XP_mouse_cursor.png'), auto;
         }
 
-        /* Title bar with Windows XP Style */
-        .pop-up-header {
-            background-color: #1e3a5e; /* Windows XP Blue Title Bar */
+        .popup {
+            width: 380px;
+            height: 200px;
+            background-color: #f1f1f1;
+            border: 2px solid #1e3a5e;
+            position: absolute;
+            z-index: 9999;
+            display: none;
+            animation: popUpAnim 0.5s ease-out forwards;
+            overflow: hidden;
+        }
+
+        .popup-header {
+            background-color: #1e3a5e;
             color: white;
-            padding: 3px;
+            padding: 5px;
             font-size: 14px;
             font-weight: bold;
             text-align: center;
             border-top-left-radius: 5px;
             border-top-right-radius: 5px;
-            border-bottom: 2px solid #000080;
+            border-bottom: 1px solid #1e3a5e;
         }
 
-        /* Content Area of the Pop-Up */
-        .pop-up-body {
+        .popup-body {
             padding: 10px;
-            color: #000;
+            color: black;
             font-size: 12px;
             line-height: 1.5;
+            text-align: center;
         }
 
-        /* Window button style */
-        .window-button {
+        .button {
             background-color: #dcdcdc;
             border: 1px solid #000;
             padding: 5px 15px;
@@ -57,143 +56,95 @@
             border-radius: 3px;
             font-size: 12px;
             box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5);
+            margin-top: 10px;
         }
 
-        /* Animations */
-        @keyframes popUpAnim {
-            0% { transform: translate(50%, -100%); }
-            25% { transform: translate(30%, 10%); }
-            50% { transform: translate(70%, 40%); }
-            75% { transform: translate(60%, 20%); }
-            100% { transform: translate(50%, 50%); }
-        }
-
-        /* Show pop-up sequence */
-        .pop-up-show {
-            animation: popUpAnim 3s ease-out forwards;
-            display: block;
-        }
-
-        .pop-up-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 10;
-        }
-
-        /* Add some trash bin animations */
-        .trash-bin {
-            position: absolute;
-            width: 80px;
-            height: 80px;
-            background-color: #d3d3d3;
-            border-radius: 50%;
-            left: 50%;
-            transform: translateX(-50%);
-            bottom: 60px;
-            display: none;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
-            z-index: 1;
-        }
-
-        .trash-bin img {
-            width: 50px;
-            height: 50px;
-            margin: 15px auto;
-            display: block;
-        }
-
-        /* Pop-up size change for screen filling effect */
-        @keyframes fullScreenPopUp {
-            0% { width: 400px; height: 160px; }
-            100% { width: 100vw; height: 100vh; }
-        }
-        
-        .pop-up-fullscreen {
-            animation: fullScreenPopUp 10s ease-in-out forwards;
-        }
-
-        /* Window button hover and active states */
-        .window-button:hover {
+        .button:hover {
             background-color: #b0b0b0;
         }
 
-        .window-button:active {
+        .button:active {
             background-color: #999999;
         }
+
+        @keyframes popUpAnim {
+            0% { transform: translate(-50%, -50%) scale(0); }
+            100% { transform: translate(-50%, -50%) scale(1); }
+        }
+
+        /* Random movement effect */
+        @keyframes movePopUp {
+            0% { top: 10%; left: 10%; }
+            25% { top: 30%; left: 60%; }
+            50% { top: 50%; left: 90%; }
+            75% { top: 70%; left: 40%; }
+            100% { top: 90%; left: 10%; }
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+        }
+
     </style>
 </head>
 <body>
 
-    <!-- Error Pop-Ups -->
-    <div class="pop-up-container">
-        <div class="pop-up pop-up1">
-            <div class="pop-up-header">Security Alert</div>
-            <div class="pop-up-body">Critical error! System malfunction detected.</div>
-        </div>
-
-        <div class="pop-up pop-up2">
-            <div class="pop-up-header">Security Alert</div>
-            <div class="pop-up-body">Error 404: File not found. Your computer is at risk!</div>
-        </div>
-
-        <div class="pop-up pop-up3">
-            <div class="pop-up-header">Security Alert</div>
-            <div class="pop-up-body">Warning: Unauthorized access detected. System compromised!</div>
-        </div>
-
-        <div class="pop-up pop-up4">
-            <div class="pop-up-header">System Warning</div>
-            <div class="pop-up-body">Windows cannot find the file. Your PC might be infected!</div>
-        </div>
-    </div>
-
-    <!-- Trash Bin Icon -->
-    <div class="trash-bin">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Recycle_bin_icon_2013.svg/120px-Recycle_bin_icon_2013.svg.png" alt="Trash Bin">
-    </div>
-
     <script>
-        // Function to show the pop-up sequence automatically
-        function showError(popupNumber) {
-            const popups = document.querySelectorAll('.pop-up');
-            popups.forEach(popup => popup.style.display = 'none'); // Hide all popups
+        const videoLinks = [
+            'https://www.youtube.com/watch?v=4ih5qjPWPE4',
+            'https://www.youtube.com/watch?v=jiK9azOHMrw',
+            'https://www.youtube.com/watch?v=Wgp0F04a0wQ',
+            'https://www.youtube.com/watch?v=b15IuwPnh-s',
+            'https://www.youtube.com/watch?v=vGTX9y5ZbyA',
+            'https://www.youtube.com/watch?v=Wqn3Lcjudvk',
+            'https://www.youtube.com/watch?v=z1ZQ7cpbGLs',
+            'https://www.youtube.com/watch?v=as7Vm4Y5ku0'
+        ];
 
-            if (popupNumber <= popups.length) {
-                const popup = document.querySelector(`.pop-up${popupNumber}`);
-                popup.classList.add('pop-up-show');
-                popup.style.display = 'block'; // Show the specific popup
+        // Function to generate a random pop-up with a video
+        function createPopup() {
+            const popup = document.createElement('div');
+            popup.classList.add('popup');
+            popup.style.top = `${Math.random() * 100}vh`;
+            popup.style.left = `${Math.random() * 100}vw`;
+            popup.style.animation = `movePopUp ${Math.random() * 5 + 3}s infinite`;
+            popup.style.display = 'block';
+
+            const randomVideo = videoLinks[Math.floor(Math.random() * videoLinks.length)];
+            const videoEmbed = `https://www.youtube.com/embed/${randomVideo.split('v=')[1]}?autoplay=1&mute=1&modestbranding=1`;
+
+            popup.innerHTML = `
+                <div class="popup-header">Critical Error</div>
+                <div class="popup-body">
+                    <iframe src="${videoEmbed}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                </div>
+            `;
+            
+            document.body.appendChild(popup);
+            
+            // Remove pop-up after a random time
+            setTimeout(() => {
+                popup.style.display = 'none';
+            }, Math.random() * 5000 + 3000); // Pop-up disappears after a random time
+        }
+
+        // Create multiple random pop-ups
+        function createMultiplePopups() {
+            for (let i = 0; i < 10; i++) {
+                setTimeout(createPopup, Math.random() * 1000); // Delay each pop-up's appearance slightly
             }
         }
 
-        function showTrashBin() {
-            const trashBin = document.querySelector('.trash-bin');
-            trashBin.classList.add('trash-bin-show');
-            trashBin.style.display = 'block'; // Show trash bin
-            setTimeout(function() {
-                window.location.href = 'https://mazzaieen.github.io/home.html'; // Redirect after animation
-            }, 1000); // Wait for the trash bin animation to complete
-        }
-
-        // Show the pop-ups sequentially without the need for pressing OK
-        let popupIndex = 1;
-        function showPopupsSequentially() {
-            const popupCount = 10;  // Set the number of pop-ups to be shown
-            showError(popupIndex);
-            popupIndex++;
-            if (popupIndex <= popupCount) {
-                setTimeout(showPopupsSequentially, 1000); // Show next pop-up every 1 second
-            } else {
-                setTimeout(showTrashBin, 3000); // Once pop-ups fill the screen, show the trash bin
-            }
-        }
-
-        // Start the pop-up sequence when the page loads
+        // Trigger the pop-up generation on page load
         window.onload = function() {
-            showPopupsSequentially();
+            createMultiplePopups();  // Create multiple random pop-ups
         };
+
+        // After all pop-ups fill up the screen, transition to the next page
+        setTimeout(() => {
+            window.location.href = 'home.html'; // Transition to your homepage (change as needed)
+        }, 15000);  // 15 seconds before transition
     </script>
 
 </body>
