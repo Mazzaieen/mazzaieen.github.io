@@ -13,7 +13,6 @@
             padding: 0;
             overflow: hidden;
             height: 100vh;
-            transition: background 3s ease; /* Smooth transition for background */
         }
 
         /* Style for pop-up windows (static PNG images + GIFs) */
@@ -33,14 +32,7 @@
             object-fit: contain; /* Preserve the aspect ratio of the image */
         }
 
-        /* Transition effect to dinosaur GIF */
-        .transition-to-dino {
-            background: url('https://storage.googleapis.com/gweb-uniblog-publish-prod/original_images/Social_dino-with-hat.gif') no-repeat center center fixed;
-            background-size: cover;
-            transition: background 2s ease-in-out;
-        }
-
-        /* Fade-out transition for pop-ups */
+        /* Fade-out effect */
         .fade-out {
             opacity: 0;
             transition: opacity 2s ease;
@@ -90,28 +82,27 @@
             
             document.body.appendChild(popUp);
             
-            // Keep the pop-up on screen for 5 seconds before fading out
+            // Keep the pop-up on screen for 1-2 seconds before fading out
             setTimeout(() => {
                 popUp.classList.add('fade-out');
                 setTimeout(() => {
                     document.body.removeChild(popUp);
                 }, 2000); // Fade-out duration before removal
-            }, 5000); // Pop-up stays for 5 seconds
+            }, 1000); // Pop-up stays for 1 second before fade-out
         }
 
-        // Show pop-ups every 300 milliseconds (faster, random positions)
+        // Show pop-ups every 100 milliseconds (faster, random positions)
         const interval = setInterval(() => {
             showPopUp();
-        }, 300); // Pop-ups show every 0.3 second
+        }, 100); // Pop-ups show every 0.1 second (faster)
 
-        // Stop the pop-ups after 5 seconds (and begin the fade-out transition to dinosaur GIF)
+        // Stop the pop-ups after 5-8 seconds (and begin the transition to home page)
         setTimeout(() => {
             clearInterval(interval);
-            document.body.classList.add('transition-to-dino'); // Transition to the dinosaur GIF background
             setTimeout(() => {
                 document.body.innerHTML = '<h1>Welcome to the Home Page</h1>'; // Home page content after transition
-            }, 2000); // After 2 seconds of transition, load the home page content
-        }, 5000); // 5 seconds of pop-ups before transition
+            }, 2000); // After 2 seconds, load the home page content
+        }, 6000); // 6 seconds of pop-ups before transitioning
     </script>
 </body>
 </html>
