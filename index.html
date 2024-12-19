@@ -15,13 +15,13 @@
             height: 100vh;
         }
 
-        /* Style for the pop-ups */
+        /* Style for pop-ups */
         .popup {
             position: absolute;
             width: 300px;
             height: 200px;
             z-index: 9999;
-            transition: all 1s ease; /* Smooth movement */
+            display: none;
         }
 
         .popup img {
@@ -33,6 +33,7 @@
 </head>
 <body>
     <script>
+        // List of pop-up images
         const popUpImages = [
             'https://www.inmotionhosting.com/support/wp-content/uploads/2011/08/hosts-file-change_windows10-notification.png',
             'https://www.lifewire.com/thmb/xx1BscBaeRPP7UC8D77h540l7YI=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/windows-xp-pro-setup-format-ntfs-5a68f10efa6bcc00366e5bbb.png',
@@ -50,42 +51,51 @@
             'https://png.pngtree.com/png-clipart/20210724/ourmid/pngtree-web-page-system-pop-up-window-error-warning-retro-serious-png-image_3727038.jpg'
         ];
 
-        // Generate random positions on the screen
+        // Generate random positions
         function getRandomPosition() {
             const x = Math.random() * (window.innerWidth - 300);
             const y = Math.random() * (window.innerHeight - 200);
             return { x, y };
         }
 
-        // Create a pop-up
-        function createPopUp() {
+        // Function to create and animate pop-ups
+        function showPopUp() {
             const popUp = document.createElement('div');
-            popUp.classList.add('popup');
-
-            const image = document.createElement('img');
-            image.src = popUpImages[Math.floor(Math.random() * popUpImages.length)];
-            popUp.appendChild(image);
-
             const { x, y } = getRandomPosition();
             popUp.style.left = `${x}px`;
             popUp.style.top = `${y}px`;
 
+            const image = document.createElement('img');
+            image.src = popUpImages[Math.floor(Math.random() * popUpImages.length)];
+            popUp.classList.add('popup');
+            popUp.appendChild(image);
+
             document.body.appendChild(popUp);
 
-            // Move the pop-up every second
-            setInterval(() => {
+            // Show the pop-up after a slight delay
+            setTimeout(() => {
+                popUp.style.display = 'block';
+            }, Math.random() * 1000);
+
+            // Animate the pop-up to move around randomly
+            const moveInterval = setInterval(() => {
                 const { x, y } = getRandomPosition();
                 popUp.style.left = `${x}px`;
                 popUp.style.top = `${y}px`;
-            }, 1000); // Moves smoothly every second
+            }, 1000); // Moves every second
+
+            // Keep the pop-up visible
+            setTimeout(() => {
+                clearInterval(moveInterval); // Stop movement after the page redirects
+            }, 8000);
         }
 
         // Show multiple pop-ups
         for (let i = 0; i < 10; i++) {
-            createPopUp();
+            showPopUp();
         }
 
-        // Redirect after 8 seconds
+        // Redirect to the home page after 8 seconds
         setTimeout(() => {
             window.location.href = 'home.html';
         }, 8000);
