@@ -9,13 +9,10 @@
         body {
             background: url('https://external-preview.redd.it/uhq5zTcMPM3tOW_fbUz4PayDt_5pkEXdyXXoRWs3XOg.jpg?auto=webp&s=e06461124c1ccfdba7e9ece763b644ff68eeb06b') no-repeat center center fixed;
             background-size: cover;
-            background-position: center center;
-            background-attachment: fixed;
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
             height: 100%;
-            overflow-x: hidden;
         }
 
         /* Navigation Bar Styles */
@@ -63,28 +60,22 @@
             position: relative;
         }
 
-        /* Image Grid for Portfolio */
+        /* Image Grid */
         .image-grid {
             display: grid;
-            grid-template-columns: repeat(5, 1fr); /* 5 equal columns on large screens */
-            gap: 20px;
-            padding: 50px;
-            justify-items: center;
-            margin: 0 auto;
-            max-width: 1200px; /* Optional: Set a maximum width for better alignment */
+            grid-template-columns: repeat(5, 300px);
+            grid-gap: 20px;
+            justify-content: center; /* Centers the grid horizontally */
+            margin: 50px auto;
+            max-width: 100%; /* Ensures responsiveness */
+            padding: 0 20px;
         }
 
         .image-grid img {
             width: 300px;
             height: 300px;
             object-fit: cover;
-            border-radius: 8px;
-        }
-
-        /* Portfolio Title Styling */
-        .portfolio-title {
-            font-size: 30px;
-            margin-top: 100px;
+            border-radius: 10px;
         }
 
         /* Responsive Design for Mobile */
@@ -106,15 +97,9 @@
                 margin-top: 80px;
             }
 
-            /* Image Grid */
+            /* Adjust grid for smaller screens */
             .image-grid {
-                grid-template-columns: repeat(2, 1fr); /* 2 columns on smaller screens */
-                padding: 30px;
-            }
-
-            .image-grid img {
-                width: 250px;
-                height: 250px;
+                grid-template-columns: repeat(2, 1fr);
             }
         }
 
@@ -125,14 +110,13 @@
                 margin-top: 60px;
             }
 
-            .image-grid {
-                grid-template-columns: 1fr; /* 1 column on very small screens */
-                padding: 20px;
+            nav a {
+                font-size: 14px;
+                padding: 8px 15px;
             }
 
-            .image-grid img {
-                width: 200px;
-                height: 200px;
+            .image-grid {
+                grid-template-columns: repeat(1, 1fr);
             }
         }
     </style>
@@ -147,28 +131,29 @@
     <!-- Portfolio Title -->
     <div class="portfolio-title">Mazzaieen's Portfolio</div>
 
-    <!-- Image Grid for Portfolio -->
+    <!-- Image Grid -->
     <div class="image-grid">
-        <img src="https://via.placeholder.com/300" alt="Placeholder Image">
-        <img src="https://via.placeholder.com/300" alt="Placeholder Image">
-        <img src="https://via.placeholder.com/300" alt="Placeholder Image">
-        <img src="https://via.placeholder.com/300" alt="Placeholder Image">
-        <img src="https://via.placeholder.com/300" alt="Placeholder Image">
-        <img src="https://via.placeholder.com/300" alt="Placeholder Image">
-        <img src="https://via.placeholder.com/300" alt="Placeholder Image">
-        <img src="https://via.placeholder.com/300" alt="Placeholder Image">
-        <img src="https://via.placeholder.com/300" alt="Placeholder Image">
-        <img src="https://via.placeholder.com/300" alt="Placeholder Image">
-        <img src="https://via.placeholder.com/300" alt="Placeholder Image">
-        <img src="https://via.placeholder.com/300" alt="Placeholder Image">
-        <img src="https://via.placeholder.com/300" alt="Placeholder Image">
-        <img src="https://via.placeholder.com/300" alt="Placeholder Image">
-        <img src="https://via.placeholder.com/300" alt="Placeholder Image">
-        <img src="https://via.placeholder.com/300" alt="Placeholder Image">
-        <img src="https://via.placeholder.com/300" alt="Placeholder Image">
-        <img src="https://via.placeholder.com/300" alt="Placeholder Image">
-        <img src="https://via.placeholder.com/300" alt="Placeholder Image">
-        <img src="https://via.placeholder.com/300" alt="Placeholder Image">
+        <!-- 20 Placeholder Images -->
+        <img src="https://via.placeholder.com/300" alt="Placeholder">
+        <img src="https://via.placeholder.com/300" alt="Placeholder">
+        <img src="https://via.placeholder.com/300" alt="Placeholder">
+        <img src="https://via.placeholder.com/300" alt="Placeholder">
+        <img src="https://via.placeholder.com/300" alt="Placeholder">
+        <img src="https://via.placeholder.com/300" alt="Placeholder">
+        <img src="https://via.placeholder.com/300" alt="Placeholder">
+        <img src="https://via.placeholder.com/300" alt="Placeholder">
+        <img src="https://via.placeholder.com/300" alt="Placeholder">
+        <img src="https://via.placeholder.com/300" alt="Placeholder">
+        <img src="https://via.placeholder.com/300" alt="Placeholder">
+        <img src="https://via.placeholder.com/300" alt="Placeholder">
+        <img src="https://via.placeholder.com/300" alt="Placeholder">
+        <img src="https://via.placeholder.com/300" alt="Placeholder">
+        <img src="https://via.placeholder.com/300" alt="Placeholder">
+        <img src="https://via.placeholder.com/300" alt="Placeholder">
+        <img src="https://via.placeholder.com/300" alt="Placeholder">
+        <img src="https://via.placeholder.com/300" alt="Placeholder">
+        <img src="https://via.placeholder.com/300" alt="Placeholder">
+        <img src="https://via.placeholder.com/300" alt="Placeholder">
     </div>
 </body>
 </html>
