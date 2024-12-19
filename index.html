@@ -77,14 +77,12 @@
             popUp.appendChild(image);
             
             document.body.appendChild(popUp);
-            setTimeout(() => popUp.style.display = 'block', Math.random() * 1000); // Random delay
-            setTimeout(() => popUp.style.display = 'none', 5000); // Hide pop-up after 5 seconds
         }
 
-        // Show pop-ups every 200 milliseconds (faster, random positions)
+        // Show pop-ups more frequently (adjusted interval for faster pop-ups)
         setInterval(() => {
             showPopUp();
-        }, 200); // Pop-ups show every 0.2 second
+        }, 50); // Pop-ups show every 0.05 second (faster)
 
         // Redirect after 5 seconds
         setTimeout(() => {
