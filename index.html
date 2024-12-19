@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Enter Page</title>
+    <title>Pop-up Page</title>
     <style>
         /* Set the background to the new GIF image */
         body {
@@ -30,39 +30,24 @@
             object-fit: contain; /* Preserve the aspect ratio of the image */
         }
 
-        /* Style for the Enter Button */
-        .start-button {
+        /* Style for video pop-ups */
+        .popup-video {
             position: absolute;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            width: 120px;  /* Adjust width */
-            height: 120px;
-            background-image: url('https://cdn3d.iconscout.com/3d/premium/thumb/enter-keyboard-key-3d-icon-download-in-png-blend-fbx-gltf-file-formats--button-pack-sign-symbols-icons-9707743.png');
-            background-size: contain;
-            background-repeat: no-repeat;
-            border: none;
-            cursor: pointer;
-            z-index: 10000;
-            box-shadow: 0 0 20px 10px rgba(255, 255, 255, 1); /* White outer glow */
-        }
-
-        .start-button:focus {
-            outline: none;
-        }
-
-        /* Hide all pop-ups initially */
-        .hidden {
+            width: 300px;
+            height: 200px;
+            z-index: 9999;
             display: none;
+        }
+
+        .popup-video iframe {
+            width: 100%;
+            height: 100%;
         }
     </style>
 </head>
 <body>
-    <!-- Start Button to trigger the pop-up animation -->
-    <button class="start-button" onclick="startPopUps()"></button>
-
     <script>
-        // List of your authentic Windows pop-up PNGs and GIFs
+        // List of your authentic Windows pop-up PNGs and GIFs including Wikipedia ones
         const popUpImages = [
             'https://www.inmotionhosting.com/support/wp-content/uploads/2011/08/hosts-file-change_windows10-notification.png', // Image you provided
             'https://www.lifewire.com/thmb/xx1BscBaeRPP7UC8D77h540l7YI=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/windows-xp-pro-setup-format-ntfs-5a68f10efa6bcc00366e5bbb.png', // Windows XP setup format
@@ -73,46 +58,62 @@
             'https://static.wikia.nocookie.net/obsoletebattleshow/images/9/96/Popup2024.png/revision/latest?cb=20241204214634', // Pop-up 6
             'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Scareware_example_popup.webp/634px-Scareware_example_popup.webp.png', // Scareware example
             'https://i0.wp.com/freddyreyes.com/wp-content/uploads/2018/03/xp-sp2-8.png?fit=625%2C464&ssl=1', // Windows XP SP2 pop-up
-            'https://media.tenor.com/esO1vsykewsAAAAe/popup-ad-popup-ads.png', // Pop-up 8
-            'https://static.wikia.nocookie.net/omori/images/7/7e/Download_Window_%28Neutral%29.gif/revision/latest/thumbnail/width/360/height/360?cb=20210410001021', // GIF 1
-            'https://cdn.adtidy.org/public/Adguard/Website/Images/seo/en/block_popups/giphy3.gif?mw=1360', // GIF 2
-            'https://danielteacheruk.wordpress.com/wp-content/uploads/2016/04/prt_259x229_1402895538.gif?w=339&h=300', // GIF 3
-            'https://steamuserimages-a.akamaihd.net/ugc/960670257215390105/BA61E3F6A6BE8D1380AC9F7A17EAE2049B18B694/', // GIF 4
+            'https://media.tenor.com/esO1vsykewsAAAAe/popup-ad-popup-ads.png' // Pop-up 7
         ];
 
+        // List of YouTube video URLs to be used as pop-ups
+        const videoUrls = [
+            'https://www.youtube.com/watch?v=4ih5qjPWPE4',
+            'https://www.youtube.com/watch?v=jiK9azOHMrw',
+            'https://www.youtube.com/watch?v=Wgp0F04a0wQ',
+            'https://www.youtube.com/watch?v=b15IuwPnh-s',
+            'https://www.youtube.com/watch?v=vGTX9y5ZbyA',
+            'https://www.youtube.com/watch?v=Wqn3Lcjudvk',
+            'https://www.youtube.com/watch?v=z1ZQ7cpbGLs',
+            'https://www.youtube.com/watch?v=as7Vm4Y5ku0'
+        ];
+
+        // Function to generate random positions on the screen
         function getRandomPosition() {
-            const x = Math.floor(Math.random() * window.innerWidth);
-            const y = Math.floor(Math.random() * window.innerHeight);
+            const x = Math.floor(Math.random() * (window.innerWidth - 300)); // X position
+            const y = Math.floor(Math.random() * (window.innerHeight - 200)); // Y position
             return { x, y };
         }
 
-        // Function to randomly display pop-ups
-        function startPopUps() {
-            let popUpCount = 0;
+        // Function to show pop-ups (images and videos)
+        function showPopUp(type) {
+            const popUp = document.createElement('div');
+            const { x, y } = getRandomPosition();
+            popUp.style.left = `${x}px`;
+            popUp.style.top = `${y}px`;
 
-            const interval = setInterval(() => {
-                if (popUpCount >= 30) { // Stop after 30 pop-ups
-                    clearInterval(interval);
-                    window.location.href = "home.html"; // Redirect to home page after pop-ups
-                    return;
-                }
-
-                const randomImage = popUpImages[Math.floor(Math.random() * popUpImages.length)];
-                const popUp = document.createElement('div');
+            if (type === 'image') {
+                const image = document.createElement('img');
+                image.src = popUpImages[Math.floor(Math.random() * popUpImages.length)];
                 popUp.classList.add('popup');
-                popUp.style.left = `${getRandomPosition().x}px`;
-                popUp.style.top = `${getRandomPosition().y}px`;
+                popUp.appendChild(image);
+            } else if (type === 'video') {
+                const iframe = document.createElement('iframe');
+                iframe.src = videoUrls[Math.floor(Math.random() * videoUrls.length)] + '?autoplay=1';
+                iframe.frameborder = '0';
+                iframe.allow = 'autoplay; encrypted-media';
+                popUp.classList.add('popup-video');
+                popUp.appendChild(iframe);
+            }
 
-                const imgElement = document.createElement('img');
-                imgElement.src = randomImage;
-                popUp.appendChild(imgElement);
-
-                document.body.appendChild(popUp);
-                popUp.classList.remove('hidden');
-
-                popUpCount++;
-            }, 300); // New pop-up every 300ms
+            document.body.appendChild(popUp);
+            setTimeout(() => popUp.style.display = 'block', Math.random() * 1000); // Randomize delay
         }
+
+        // Show pop-ups every 1-2 seconds
+        setInterval(() => {
+            showPopUp(Math.random() > 0.5 ? 'image' : 'video'); // Randomly choose image or video
+        }, 1000); // Pop-ups show every 1 second
+
+        // Stop the pop-ups after 10 seconds (remove pop-ups and transition to the next page)
+        setTimeout(() => {
+            document.body.innerHTML = '<h1>Welcome to the Home Page</h1>';
+        }, 10000); // 10 seconds after loading the page
     </script>
 </body>
 </html>
