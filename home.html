@@ -63,10 +63,11 @@
         /* Embed Frames Styling */
         .embed-container {
             display: grid;
-            grid-template-columns: repeat(5, 1fr);
+            grid-template-columns: repeat(2, 1fr);
             gap: 20px;
+            justify-content: center;
             margin: 50px auto;
-            max-width: 100%; /* Ensures responsiveness */
+            max-width: 100%;
             padding: 0 20px;
         }
 
@@ -115,7 +116,7 @@
 
             /* Adjust grid for smaller screens */
             .embed-container {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: 1fr;
             }
 
             .image-placeholder-container {
