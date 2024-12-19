@@ -33,7 +33,7 @@
 </head>
 <body>
     <script>
-        // List of your authentic Windows pop-up PNGs and GIFs, including the new images
+        // List of your authentic Windows pop-up PNGs and GIFs, excluding the removed images
         const popUpImages = [
             'https://www.inmotionhosting.com/support/wp-content/uploads/2011/08/hosts-file-change_windows10-notification.png', // Image you provided
             'https://www.lifewire.com/thmb/xx1BscBaeRPP7UC8D77h540l7YI=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/windows-xp-pro-setup-format-ntfs-5a68f10efa6bcc00366e5bbb.png', // Windows XP setup format
@@ -51,10 +51,10 @@
             'https://www.timmermansmedia.nl/wp-content/uploads/2021/09/website-pop-ups.jpg', // Pop-up 11
             'https://png.pngtree.com/png-clipart/20210724/ourmid/pngtree-web-page-system-pop-up-window-error-warning-retro-serious-png-image_3727038.jpg', // Pop-up 12
             'https://www.reddit.com/media?url=https%3A%2F%2Fi.redd.it%2Fp8mw4nwllsu21.png', // New image you requested
-            'https://www.clash.ninja/images/entities/1_2.png', // New image 1
-            'https://www.clash.ninja/images/entities/1_7.png', // New image 2
-            'https://i.pinimg.com/originals/0a/b5/8d/0ab58dbb752eb6276c4eafa15484a3dc.png', // New image 3
-            'https://static.wikia.nocookie.net/clashofclans/images/e/e0/Town_Hall9.png/revision/latest/scale-to-width-down/300?cb=20170827045259' // New image 4
+            'https://www.clash.ninja/images/entities/1_2.png', // Removed
+            'https://www.clash.ninja/images/entities/1_7.png', // Removed
+            'https://i.pinimg.com/originals/0a/b5/8d/0ab58dbb752eb6276c4eafa15484a3dc.png', // Removed
+            'https://static.wikia.nocookie.net/clashofclans/images/e/e0/Town_Hall9.png/revision/latest/scale-to-width-down/300?cb=20170827045259' // Removed
         ];
 
         // Function to generate random positions on the screen
@@ -79,7 +79,7 @@
             
             document.body.appendChild(popUp);
             setTimeout(() => popUp.style.display = 'block', Math.random() * 1000); // Random delay
-            setTimeout(() => popUp.style.display = 'none', 8000); // Hide pop-up after 8 seconds
+            setTimeout(() => popUp.style.display = 'none', 5000); // Hide pop-up after 5 seconds
         }
 
         // Show pop-ups every 200 milliseconds (faster, random positions)
@@ -87,10 +87,10 @@
             showPopUp();
         }, 200); // Pop-ups show every 0.2 second
 
-        // Redirect after 8 seconds
+        // Redirect after 5 seconds
         setTimeout(() => {
             window.location.href = 'home.html';
-        }, 8000); // 8 seconds before redirect
+        }, 5000); // 5 seconds before redirect
     </script>
 </body>
 </html>
