@@ -47,58 +47,44 @@
             'https://burubado.com/cdn/shop/products/2_a78483fd-cb37-40ba-8cf4-ea2c7b73e7f9.png?v=1571564518',
             'https://tech4world.net/wp-content/uploads/2010/07/you-are-pregnant-funny-error-messages.png',
             'https://blogs.quickheal.com/wp-content/uploads/2014/06/popup-advertisment.jpg',
-            'https://www.timmermansmedia.nl/wp-content/uploads/2021/09/website-pop-ups.jpg',
             'https://png.pngtree.com/png-clipart/20210724/ourmid/pngtree-web-page-system-pop-up-window-error-warning-retro-serious-png-image_3727038.jpg'
         ];
 
-        // Generate random positions
+        // Function to generate random positions on the screen
         function getRandomPosition() {
-            const x = Math.random() * (window.innerWidth - 300);
-            const y = Math.random() * (window.innerHeight - 200);
+            const x = Math.floor(Math.random() * (window.innerWidth - 300)); // X position
+            const y = Math.floor(Math.random() * (window.innerHeight - 200)); // Y position
             return { x, y };
         }
 
-        // Function to create and animate pop-ups
+        // Function to show pop-ups (images and GIFs)
         function showPopUp() {
             const popUp = document.createElement('div');
             const { x, y } = getRandomPosition();
             popUp.style.left = `${x}px`;
             popUp.style.top = `${y}px`;
 
+            // Create an image pop-up
             const image = document.createElement('img');
             image.src = popUpImages[Math.floor(Math.random() * popUpImages.length)];
             popUp.classList.add('popup');
             popUp.appendChild(image);
-
+            
             document.body.appendChild(popUp);
 
             // Show the pop-up after a slight delay
-            setTimeout(() => {
-                popUp.style.display = 'block';
-            }, Math.random() * 1000);
-
-            // Animate the pop-up to move around randomly
-            const moveInterval = setInterval(() => {
-                const { x, y } = getRandomPosition();
-                popUp.style.left = `${x}px`;
-                popUp.style.top = `${y}px`;
-            }, 1000); // Moves every second
-
-            // Keep the pop-up visible
-            setTimeout(() => {
-                clearInterval(moveInterval); // Stop movement after the page redirects
-            }, 8000);
+            setTimeout(() => popUp.style.display = 'block', Math.random() * 1000); // Random delay
         }
 
-        // Show multiple pop-ups
-        for (let i = 0; i < 10; i++) {
+        // Show pop-ups every 200 milliseconds (faster, random positions)
+        setInterval(() => {
             showPopUp();
-        }
+        }, 200); // Pop-ups show every 0.2 second
 
         // Redirect to the home page after 8 seconds
         setTimeout(() => {
             window.location.href = 'home.html';
-        }, 8000);
+        }, 8000); // 8 seconds after loading the page
     </script>
 </body>
 </html>
