@@ -11,8 +11,9 @@
             background-size: cover;
             margin: 0;
             padding: 0;
-            height: 100vh;
             font-family: Arial, sans-serif;
+            height: 100%;
+            overflow-x: hidden;
         }
 
         /* Dropdown menu styles */
@@ -51,26 +52,30 @@
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 20px;
-            padding: 50px;
+            padding: 20px;
+            margin-top: 70px; /* Adjust this to avoid overlap with the dropdown */
         }
 
         .portfolio-item {
-            background: rgba(255, 255, 255, 0.8);
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            height: auto;
         }
 
+        .portfolio-item img, .portfolio-item video {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Style to create the image placeholders */
         .portfolio-item img {
-            width: 100%;
-            height: auto;
-            border-radius: 5px;
+            background-color: #ddd;
         }
 
-        .portfolio-item video {
-            width: 100%;
-            height: auto;
-            border-radius: 5px;
+        /* Remove any default margins */
+        body, html {
+            margin: 0;
+            padding: 0;
         }
     </style>
 </head>
@@ -85,21 +90,67 @@
         </div>
     </div>
 
-    <!-- Portfolio Grid -->
-    <div class="portfolio-grid">
-        <!-- Example of a portfolio item with an image -->
-        <div class="portfolio-item">
-            <img src="https://via.placeholder.com/300" alt="Portfolio Item 1">
-        </div>
-        <!-- Example of a portfolio item with a video -->
-        <div class="portfolio-item">
-            <video controls>
-                <source src="your-video.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-        </div>
-        <!-- Add more portfolio items here -->
+    <!-- Portfolio Grid with 30 placeholders -->
+    <div class="portfolio-grid" id="portfolioGrid">
+        <!-- Generate 30 portfolio items dynamically -->
+        <script>
+            const portfolioGrid = document.getElementById("portfolioGrid");
+
+            // Add 30 placeholder items to the grid
+            for (let i = 0; i < 30; i++) {
+                const portfolioItem = document.createElement("div");
+                portfolioItem.classList.add("portfolio-item");
+
+                // Randomly add either an image or video placeholder
+                if (Math.random() < 0.5) {
+                    const img = document.createElement("img");
+                    img.src = "https://via.placeholder.com/300";
+                    img.alt = `Portfolio Image ${i+1}`;
+                    portfolioItem.appendChild(img);
+                } else {
+                    const video = document.createElement("video");
+                    video.controls = true;
+                    const source = document.createElement("source");
+                    source.src = "https://www.w3schools.com/html/mov_bbb.mp4"; // Replace with your video link
+                    source.type = "video/mp4";
+                    video.appendChild(source);
+                    portfolioItem.appendChild(video);
+                }
+
+                portfolioGrid.appendChild(portfolioItem);
+            }
+        </script>
     </div>
+
+    <!-- Infinite scroll functionality -->
+    <script>
+        // Function to load more items when scrolling to the bottom of the page
+        window.onscroll = function() {
+            if (window.innerHeight + window.scrollY >= document.body.scrollHeight) {
+                // Add 30 more placeholders to simulate infinite scroll
+                for (let i = 0; i < 30; i++) {
+                    const portfolioItem = document.createElement("div");
+                    portfolioItem.classList.add("portfolio-item");
+
+                    if (Math.random() < 0.5) {
+                        const img = document.createElement("img");
+                        img.src = "https://via.placeholder.com/300";
+                        img.alt = `Portfolio Image ${document.querySelectorAll('.portfolio-item').length + 1}`;
+                        portfolioItem.appendChild(img);
+                    } else {
+                        const video = document.createElement("video");
+                        video.controls = true;
+                        const source = document.createElement("source");
+                        source.src = "https://www.w3schools.com/html/mov_bbb.mp4"; // Replace with your video link
+                        source.type = "video/mp4";
+                        video.appendChild(source);
+                        portfolioItem.appendChild(video);
+                    }
+
+                    portfolioGrid.appendChild(portfolioItem);
+                }
+            }
+        }
+    </script>
 </body>
 </html>
-
