@@ -5,79 +5,72 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Enter Page</title>
     <style>
+        /* Background: Authentic Windows XP wallpaper */
         body {
             background: url('https://www.wallpapertip.com/wmimgs/25-258536_windows-xp-desktop-background.jpg') no-repeat center center fixed;
             background-size: cover;
             margin: 0;
             padding: 0;
             overflow: hidden;
+            height: 100vh;
         }
 
+        /* Style for pop-up windows (static PNG images) */
         .popup {
             position: absolute;
             width: 300px;
             height: 200px;
-            background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Windows_XP_Error_Dialog.svg/1200px-Windows_XP_Error_Dialog.svg.png') no-repeat center;
-            background-size: cover;
             z-index: 9999;
             display: none;
         }
 
-        .popup .title-bar {
-            position: absolute;
-            top: 0;
+        /* Additional pop-up images */
+        .popup img {
             width: 100%;
-            background-color: #000080;
-            color: white;
-            text-align: center;
-            padding: 5px;
-            font-weight: bold;
-        }
-
-        @keyframes movePopUp {
-            0% { top: -50px; left: 50%; transform: translateX(-50%); }
-            25% { top: 10%; left: 25%; }
-            50% { top: 25%; left: 10%; }
-            75% { top: 40%; left: 60%; }
-            100% { top: 70%; left: 50%; transform: translateX(-50%); }
-        }
-
-        @keyframes erraticMove {
-            0% { transform: translateX(0) translateY(0); }
-            20% { transform: translateX(10px) translateY(-10px); }
-            40% { transform: translateX(-20px) translateY(10px); }
-            60% { transform: translateX(30px) translateY(-20px); }
-            80% { transform: translateX(-40px) translateY(20px); }
-            100% { transform: translateX(0) translateY(0); }
+            height: 100%;
         }
     </style>
 </head>
 <body>
     <!-- Pop-up windows will be created dynamically with JS -->
-
     <script>
+        // List of authentic Windows pop-up PNGs including the one you provided
+        const popUpImages = [
+            'https://www.inmotionhosting.com/support/wp-content/uploads/2011/08/hosts-file-change_windows10-notification.png',
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Windows_95_Error_Box.png/1920px-Windows_95_Error_Box.png',
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Windows_XP_Error_Dialog.svg/1200px-Windows_XP_Error_Dialog.svg.png',
+            'https://upload.wikimedia.org/wikipedia/commons/1/16/Windows_98_System_Error_Box.png',
+            'https://upload.wikimedia.org/wikipedia/commons/6/6d/Windows_Me_Error_Box.png',
+            'https://upload.wikimedia.org/wikipedia/commons/0/01/Windows_XP_Blue_Screen_of_Death.png',
+            'https://upload.wikimedia.org/wikipedia/commons/d/d7/Windows_95_Explorer_Error_Box.png',
+            'https://upload.wikimedia.org/wikipedia/commons/5/59/Windows_XP_Launch_Installer_Error.png',
+            'https://upload.wikimedia.org/wikipedia/commons/e/e0/Windows_Vista_Upgrade_Warning.png',
+            'https://upload.wikimedia.org/wikipedia/commons/1/1b/Windows_7_Update_Error_Box.png'
+            // Add more URLs for other authentic pop-up images as desired.
+        ];
+
         function createRandomPopUp() {
             const popup = document.createElement('div');
             popup.classList.add('popup');
 
-            const titleBar = document.createElement('div');
-            titleBar.classList.add('title-bar');
-            titleBar.textContent = 'Error';
+            // Create the image element
+            const img = document.createElement('img');
+            const randomIndex = Math.floor(Math.random() * popUpImages.length); // Randomize image from list
+            img.src = popUpImages[randomIndex];
 
-            popup.appendChild(titleBar);
+            popup.appendChild(img);
 
-            // Append to body
-            document.body.appendChild(popup);
-
-            // Randomize pop-up position
-            const randomTop = Math.random() * window.innerHeight;
-            const randomLeft = Math.random() * window.innerWidth;
+            // Randomize pop-up position within screen bounds
+            const randomTop = Math.random() * (window.innerHeight - 200); // Ensure pop-up stays within screen
+            const randomLeft = Math.random() * (window.innerWidth - 300); // Ensure pop-up stays within screen
 
             popup.style.top = `${randomTop}px`;
             popup.style.left = `${randomLeft}px`;
 
             popup.style.display = 'block';
-            popup.style.animation = 'movePopUp 5s ease-in-out, erraticMove 2s infinite';
+
+            // Append to body
+            document.body.appendChild(popup);
 
             // Remove the pop-up after 5 seconds (adjust this as needed)
             setTimeout(() => {
@@ -85,9 +78,21 @@
             }, 5000);
         }
 
-        // Create random pop-ups at short intervals
-        setInterval(createRandomPopUp, 200);
+        // Create random pop-ups every 300 milliseconds
+        let popUpCount = 0;
+        const popUpLimit = 25; // Create 25 pop-ups
+        const popUpInterval = setInterval(() => {
+            createRandomPopUp();
+            popUpCount++;
 
+            if (popUpCount >= popUpLimit) {
+                clearInterval(popUpInterval); // Stop pop-ups after reaching limit
+                setTimeout(() => {
+                    // Transition to the home screen (replace this with your home page logic)
+                    window.location.href = "home.html"; // Replace with your home page URL
+                }, 1000); // Wait 1 second before transitioning
+            }
+        }, 300); // 300ms interval to create pop-ups
     </script>
 </body>
 </html>
