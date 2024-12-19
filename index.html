@@ -1,88 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Popup Animation</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      overflow: hidden;
-      background: url('https://external-preview.redd.it/uhq5zTcMPM3tOW_fbUz4PayDt_5pkEXdyXXoRWs3XOg.jpg?auto=webp&s=e06461124c1ccfdba7e9ece763b644ff68eeb06b') no-repeat center center fixed;
-      background-size: cover;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pop-up Page</title>
+    <style>
+        /* Set the background to the new image from Reddit */
+        body {
+            background: url('https://external-preview.redd.it/uhq5zTcMPM3tOW_fbUz4PayDt_5pkEXdyXXoRWs3XOg.jpg?auto=webp&s=e06461124c1ccfdba7e9ece763b644ff68eeb06b') no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            height: 100vh;
+        }
 
-    .popup {
-      position: absolute;
-      animation: popupFadeIn 0.5s ease-out, popupFadeOut 5s ease-in forwards;
-    }
+        /* Style for pop-up windows (static PNG images + GIFs) */
+        .popup {
+            position: absolute;
+            width: 300px;
+            height: 200px;
+            z-index: 9999;
+            display: none;
+        }
 
-    @keyframes popupFadeIn {
-      from {
-        opacity: 0;
-        transform: scale(0.5);
-      }
-      to {
-        opacity: 1;
-        transform: scale(1);
-      }
-    }
+        .popup img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* Preserve the aspect ratio of the image */
+        }
 
-    @keyframes popupFadeOut {
-      to {
-        opacity: 0;
-      }
-    }
-  </style>
+        /* Style for video pop-ups */
+        .popup-video {
+            position: absolute;
+            width: 300px;
+            height: 200px;
+            z-index: 9999;
+            display: none;
+        }
+
+        .popup-video iframe {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
 </head>
 <body>
-  <script>
-    const images = [
-      'https://www.inmotionhosting.com/support/wp-content/uploads/2011/08/hosts-file-change_windows10-notification.png',
-      'https://i.sstatic.net/5dN1R.png',
-      'https://static.wikia.nocookie.net/obsoletebattleshow/images/9/96/Popup2024.png/revision/latest?cb=20241204214634',
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Scareware_example_popup.webp/634px-Scareware_example_popup.webp.png',
-      'https://i0.wp.com/freddyreyes.com/wp-content/uploads/2018/03/xp-sp2-8.png?fit=625%2C464&ssl=1',
-      'https://media.tenor.com/esO1vsykewsAAAAe/popup-ad-popup-ads.png',
-      'https://static.wikia.nocookie.net/omori/images/7/7e/Download_Window_%28Neutral%29.gif/revision/latest/thumbnail/width/360/height/360?cb=20210410001021',
-      'https://cdn.adtidy.org/public/Adguard/Website/Images/seo/en/block_popups/giphy3.gif?mw=1360',
-      'https://burubado.com/cdn/shop/products/2_a78483fd-cb37-40ba-8cf4-ea2c7b73e7f9.png?v=1571564518',
-      'https://tech4world.net/wp-content/uploads/2010/07/you-are-pregnant-funny-error-messages.png',
-      'https://blogs.quickheal.com/wp-content/uploads/2014/06/popup-advertisment.jpg',
-      'https://www.timmermansmedia.nl/wp-content/uploads/2021/09/website-pop-ups.jpg',
-      'https://png.pngtree.com/png-clipart/20210724/ourmid/pngtree-web-page-system-pop-up-window-error-warning-retro-serious-png-image_3727038.jpg'
-    ];
+    <script>
+        // List of your authentic Windows pop-up PNGs and GIFs
+        const popUpImages = [
+            'https://www.inmotionhosting.com/support/wp-content/uploads/2011/08/hosts-file-change_windows10-notification.png', // Image you provided
+            'https://www.lifewire.com/thmb/xx1BscBaeRPP7UC8D77h540l7YI=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/windows-xp-pro-setup-format-ntfs-5a68f10efa6bcc00366e5bbb.png', // Windows XP setup format
+            'https://www.top-password.com/images/windows-xp-classic-login.png', // Windows XP classic login
+            'https://pbs.twimg.com/media/GSuMWbLXUAAi2li.png:large', // Another pop-up
+            'https://images.sftcdn.net/images/t_app-cover-l,f_auto/p/780c22c6-9a65-11e6-a8e9-00163ed833e7/1990850801/msn-messenger-MSN_Messenger_7.5.0299.png', // MSN Messenger
+            'https://i.sstatic.net/5dN1R.png', // Pop-up 5
+            'https://static.wikia.nocookie.net/obsoletebattleshow/images/9/96/Popup2024.png/revision/latest?cb=20241204214634', // Pop-up 6
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Scareware_example_popup.webp/634px-Scareware_example_popup.webp.png', // Scareware example
+            'https://i0.wp.com/freddyreyes.com/wp-content/uploads/2018/03/xp-sp2-8.png?fit=625%2C464&ssl=1', // Windows XP SP2 pop-up
+            'https://media.tenor.com/esO1vsykewsAAAAe/popup-ad-popup-ads.png', // Pop-up 7
+            'https://burubado.com/cdn/shop/products/2_a78483fd-cb37-40ba-8cf4-ea2c7b73e7f9.png?v=1571564518', // Pop-up 8
+            'https://tech4world.net/wp-content/uploads/2010/07/you-are-pregnant-funny-error-messages.png', // Pop-up 9
+            'https://blogs.quickheal.com/wp-content/uploads/2014/06/popup-advertisment.jpg', // Pop-up 10
+            'https://www.timmermansmedia.nl/wp-content/uploads/2021/09/website-pop-ups.jpg', // Pop-up 11
+            'https://png.pngtree.com/png-clipart/20210724/ourmid/pngtree-web-page-system-pop-up-window-error-warning-retro-serious-png-image_3727038.jpg' // Pop-up 12
+        ];
 
-    function getRandomPosition() {
-      const x = Math.random() * window.innerWidth - 200; // 200 is an arbitrary popup width
-      const y = Math.random() * window.innerHeight - 100; // 100 is an arbitrary popup height
-      return { x: Math.max(0, x), y: Math.max(0, y) };
-    }
+        // Function to generate random positions on the screen
+        function getRandomPosition() {
+            const x = Math.floor(Math.random() * (window.innerWidth - 300)); // X position
+            const y = Math.floor(Math.random() * (window.innerHeight - 200)); // Y position
+            return { x, y };
+        }
 
-    function createPopup(imageSrc) {
-      const popup = document.createElement('img');
-      popup.src = imageSrc;
-      popup.className = 'popup';
-      const { x, y } = getRandomPosition();
-      popup.style.left = `${x}px`;
-      popup.style.top = `${y}px`;
-      popup.style.width = '200px';
-      popup.style.height = 'auto';
-      document.body.appendChild(popup);
-    }
+        // Function to show pop-ups (images and GIFs)
+        function showPopUp() {
+            const popUp = document.createElement('div');
+            const { x, y } = getRandomPosition();
+            popUp.style.left = `${x}px`;
+            popUp.style.top = `${y}px`;
 
-    let delay = 0;
-    images.forEach((image) => {
-      setTimeout(() => {
-        createPopup(image);
-      }, delay);
-      delay += 200; // Adjust timing for faster popups
-    });
+            // Create an image pop-up
+            const image = document.createElement('img');
+            image.src = popUpImages[Math.floor(Math.random() * popUpImages.length)];
+            popUp.classList.add('popup');
+            popUp.appendChild(image);
+            
+            document.body.appendChild(popUp);
+            setTimeout(() => popUp.style.display = 'block', Math.random() * 1000); // Random delay
+            setTimeout(() => popUp.style.display = 'none', 300); // Hide pop-up after 0.3 seconds
+        }
 
-    setTimeout(() => {
-      window.location.href = "home.html"; // Redirect to home page after popups
-    }, 5000); // Change this duration for popup effect
-  </script>
+        // Show pop-ups every 200 milliseconds (faster, random positions)
+        setInterval(() => {
+            showPopUp();
+        }, 200); // Pop-ups show every 0.2 second
+
+        // Stop the pop-ups after 5 seconds (to make it more erratic)
+        setTimeout(() => {
+            document.body.innerHTML = '<h1>Welcome to the Home Page</h1>';
+        }, 5000); // 5 seconds after loading the page
+    </script>
 </body>
 </html>
