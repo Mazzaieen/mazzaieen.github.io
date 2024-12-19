@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PORTFOLIO</title>
     <style>
-        /* Set the new background image */
+        /* Set the Windows background (same as the intro page) */
         body {
             background: url('https://steamuserimages-a.akamaihd.net/ugc/1179328606457897094/0A548A647DCA8C528B36E31DA856193419F51AD4/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false') no-repeat center center fixed;
             background-size: cover;
@@ -16,11 +16,37 @@
             overflow-x: hidden;
         }
 
-        /* Dropdown menu styles */
+        /* Dropdown Menu Styles (Similar to JD Sports) */
+        nav {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 10px 20px;
+            position: relative;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+        }
+
         .dropdown {
             position: relative;
             display: inline-block;
-            margin: 20px;
+            margin: 0 15px;
+        }
+
+        .dropbtn {
+            background-color: transparent;
+            color: white;
+            font-size: 18px;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            font-family: 'Helvetica', sans-serif;
+            text-transform: uppercase;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .dropbtn:hover {
+            background-color: #ff5c8d; /* Hover effect for dropdown button */
         }
 
         .dropdown-content {
@@ -29,6 +55,7 @@
             background-color: #333;
             min-width: 160px;
             z-index: 1;
+            margin-top: 5px;
         }
 
         .dropdown-content a {
@@ -39,7 +66,7 @@
         }
 
         .dropdown-content a:hover {
-            background-color: #ddd;
+            background-color: #ff5c8d; /* Hover effect for menu items */
             color: black;
         }
 
@@ -47,87 +74,87 @@
             display: block;
         }
 
-        /* Portfolio Grid */
-        .portfolio-grid {
+        /* Title above the portfolio */
+        .portfolio-title {
+            text-align: center;
+            color: white;
+            font-family: Helvetica, sans-serif;
+            font-weight: bold;
+            font-size: 40px;
+            margin-top: 50px;
+            z-index: 1;
+            position: relative;
+        }
+
+        /* Image Grid for Portfolio */
+        .image-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
             gap: 20px;
-            padding: 20px;
-            margin-top: 70px; /* Adjust this to avoid overlap with the dropdown */
+            padding: 50px;
         }
 
-        .portfolio-item {
-            width: 100%;
-            height: auto;
-        }
-
-        .portfolio-item img {
-            width: 100%;
-            height: auto;
-            display: block;
-            background-color: #ddd; /* Placeholder background color */
-        }
-
-        /* Remove any default margins */
-        body, html {
-            margin: 0;
-            padding: 0;
+        .image-grid img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 8px;
         }
     </style>
 </head>
 <body>
-    <!-- Dropdown menu for navigation -->
-    <div class="dropdown">
-        <button class="dropbtn">Menu</button>
-        <div class="dropdown-content">
-            <a href="store.html">Store</a>
-            <a href="about.html">About</a>
-            <a href="contact.html">Contact</a>
+    <nav>
+        <div class="dropdown">
+            <button class="dropbtn">Store</button>
+            <div class="dropdown-content">
+                <a href="#">Products</a>
+                <a href="#">Sales</a>
+                <a href="#">New Arrivals</a>
+            </div>
         </div>
+        <div class="dropdown">
+            <button class="dropbtn">About</button>
+            <div class="dropdown-content">
+                <a href="#">Company Info</a>
+                <a href="#">Team</a>
+                <a href="#">Careers</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn">Contact</button>
+            <div class="dropdown-content">
+                <a href="#">Email</a>
+                <a href="#">Phone</a>
+                <a href="#">Social Media</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Portfolio Title -->
+    <div class="portfolio-title">Mazzaieen's Portfolio</div>
+
+    <!-- Image Grid for Portfolio -->
+    <div class="image-grid">
+        <img src="https://via.placeholder.com/150" alt="Placeholder Image">
+        <img src="https://via.placeholder.com/150" alt="Placeholder Image">
+        <img src="https://via.placeholder.com/150" alt="Placeholder Image">
+        <img src="https://via.placeholder.com/150" alt="Placeholder Image">
+        <img src="https://via.placeholder.com/150" alt="Placeholder Image">
+        <img src="https://via.placeholder.com/150" alt="Placeholder Image">
+        <img src="https://via.placeholder.com/150" alt="Placeholder Image">
+        <img src="https://via.placeholder.com/150" alt="Placeholder Image">
+        <img src="https://via.placeholder.com/150" alt="Placeholder Image">
+        <img src="https://via.placeholder.com/150" alt="Placeholder Image">
+        <img src="https://via.placeholder.com/150" alt="Placeholder Image">
+        <img src="https://via.placeholder.com/150" alt="Placeholder Image">
+        <img src="https://via.placeholder.com/150" alt="Placeholder Image">
+        <img src="https://via.placeholder.com/150" alt="Placeholder Image">
+        <img src="https://via.placeholder.com/150" alt="Placeholder Image">
+        <img src="https://via.placeholder.com/150" alt="Placeholder Image">
+        <img src="https://via.placeholder.com/150" alt="Placeholder Image">
+        <img src="https://via.placeholder.com/150" alt="Placeholder Image">
+        <img src="https://via.placeholder.com/150" alt="Placeholder Image">
+        <img src="https://via.placeholder.com/150" alt="Placeholder Image">
     </div>
-
-    <!-- Portfolio Grid with 30 placeholders -->
-    <div class="portfolio-grid" id="portfolioGrid">
-        <!-- Generate 30 portfolio items dynamically -->
-        <script>
-            const portfolioGrid = document.getElementById("portfolioGrid");
-
-            // Add 30 placeholder items to the grid
-            for (let i = 0; i < 30; i++) {
-                const portfolioItem = document.createElement("div");
-                portfolioItem.classList.add("portfolio-item");
-
-                // Add an image placeholder
-                const img = document.createElement("img");
-                img.src = "https://via.placeholder.com/300"; // Placeholder image URL
-                img.alt = `Portfolio Image ${i+1}`;
-                portfolioItem.appendChild(img);
-
-                portfolioGrid.appendChild(portfolioItem);
-            }
-        </script>
-    </div>
-
-    <!-- Infinite scroll functionality -->
-    <script>
-        // Function to load more items when scrolling to the bottom of the page
-        window.onscroll = function() {
-            if (window.innerHeight + window.scrollY >= document.body.scrollHeight) {
-                // Add 30 more placeholders to simulate infinite scroll
-                for (let i = 0; i < 30; i++) {
-                    const portfolioItem = document.createElement("div");
-                    portfolioItem.classList.add("portfolio-item");
-
-                    // Add an image placeholder
-                    const img = document.createElement("img");
-                    img.src = "https://via.placeholder.com/300"; // Placeholder image URL
-                    img.alt = `Portfolio Image ${document.querySelectorAll('.portfolio-item').length + 1}`;
-                    portfolioItem.appendChild(img);
-
-                    portfolioGrid.appendChild(portfolioItem);
-                }
-            }
-        }
-    </script>
 </body>
 </html>
