@@ -3,135 +3,91 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Windows XP Pop-Up Effect</title>
+    <title>Enter Page</title>
     <style>
-        /* Background */
         body {
+            background: url('https://www.wallpapertip.com/wmimgs/25-258536_windows-xp-desktop-background.jpg') no-repeat center center fixed;
+            background-size: cover;
             margin: 0;
             padding: 0;
-            font-family: "Tahoma", sans-serif;
-            background-color: #5a87b3; /* Windows XP Background */
-            height: 100vh;
             overflow: hidden;
-            position: relative;
-            cursor: url('https://upload.wikimedia.org/wikipedia/commons/3/3c/Windows_XP_mouse_cursor.png'), auto;
         }
 
-        /* Pop-up Window Styling */
         .popup {
-            width: 380px;
-            height: 200px;
-            background-color: #f1f1f1;
-            border: 2px solid #1e3a5e;
             position: absolute;
+            width: 300px;
+            height: 200px;
+            background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Windows_XP_Error_Dialog.svg/1200px-Windows_XP_Error_Dialog.svg.png') no-repeat center;
+            background-size: cover;
             z-index: 9999;
             display: none;
-            animation: popUpAnim 0.5s ease-out forwards;
-            overflow: hidden;
-            border-radius: 5px;
         }
 
-        /* Header styling for pop-up */
-        .popup-header {
-            background-color: #1e3a5e;
+        .popup .title-bar {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            background-color: #000080;
             color: white;
+            text-align: center;
             padding: 5px;
-            font-size: 14px;
             font-weight: bold;
-            text-align: center;
-            border-top-left-radius: 5px;
-            border-top-right-radius: 5px;
-            border-bottom: 1px solid #1e3a5e;
         }
 
-        /* Body of the pop-up */
-        .popup-body {
-            padding: 10px;
-            color: black;
-            font-size: 12px;
-            line-height: 1.5;
-            text-align: center;
-        }
-
-        /* Pop-up Animation for Appearance */
-        @keyframes popUpAnim {
-            0% { transform: scale(0); }
-            100% { transform: scale(1); }
-        }
-
-        /* Pop-up Animation for Movement */
         @keyframes movePopUp {
-            0% { top: 10%; left: 10%; }
-            25% { top: 20%; left: 30%; }
-            50% { top: 40%; left: 60%; }
-            75% { top: 60%; left: 80%; }
-            100% { top: 90%; left: 10%; }
+            0% { top: -50px; left: 50%; transform: translateX(-50%); }
+            25% { top: 10%; left: 25%; }
+            50% { top: 25%; left: 10%; }
+            75% { top: 40%; left: 60%; }
+            100% { top: 70%; left: 50%; transform: translateX(-50%); }
         }
 
+        @keyframes erraticMove {
+            0% { transform: translateX(0) translateY(0); }
+            20% { transform: translateX(10px) translateY(-10px); }
+            40% { transform: translateX(-20px) translateY(10px); }
+            60% { transform: translateX(30px) translateY(-20px); }
+            80% { transform: translateX(-40px) translateY(20px); }
+            100% { transform: translateX(0) translateY(0); }
+        }
     </style>
 </head>
 <body>
+    <!-- Pop-up windows will be created dynamically with JS -->
 
-<script>
-    // List of YouTube video URLs
-    const videoLinks = [
-        'https://www.youtube.com/watch?v=4ih5qjPWPE4',
-        'https://www.youtube.com/watch?v=jiK9azOHMrw',
-        'https://www.youtube.com/watch?v=Wgp0F04a0wQ',
-        'https://www.youtube.com/watch?v=b15IuwPnh-s',
-        'https://www.youtube.com/watch?v=vGTX9y5ZbyA',
-        'https://www.youtube.com/watch?v=Wqn3Lcjudvk',
-        'https://www.youtube.com/watch?v=z1ZQ7cpbGLs',
-        'https://www.youtube.com/watch?v=as7Vm4Y5ku0'
-    ];
+    <script>
+        function createRandomPopUp() {
+            const popup = document.createElement('div');
+            popup.classList.add('popup');
 
-    // Function to create a new pop-up window
-    function createPopup() {
-        const popup = document.createElement('div');
-        popup.classList.add('popup');
-        popup.style.top = `${Math.random() * 80}vh`;
-        popup.style.left = `${Math.random() * 80}vw`;
-        popup.style.animation = `movePopUp ${Math.random() * 3 + 2}s linear infinite`;
+            const titleBar = document.createElement('div');
+            titleBar.classList.add('title-bar');
+            titleBar.textContent = 'Error';
 
-        // Choose a random video from the list
-        const randomVideo = videoLinks[Math.floor(Math.random() * videoLinks.length)];
-        const videoEmbed = `https://www.youtube.com/embed/${randomVideo.split('v=')[1]}?autoplay=1&mute=1`;
+            popup.appendChild(titleBar);
 
-        // Pop-up structure
-        popup.innerHTML = `
-            <div class="popup-header">Critical Error</div>
-            <div class="popup-body">
-                <iframe src="${videoEmbed}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-            </div>
-        `;
+            // Append to body
+            document.body.appendChild(popup);
 
-        document.body.appendChild(popup);
+            // Randomize pop-up position
+            const randomTop = Math.random() * window.innerHeight;
+            const randomLeft = Math.random() * window.innerWidth;
 
-        // Remove pop-up after a random time
-        setTimeout(() => {
-            popup.remove();
-        }, Math.random() * 5000 + 3000); // pop-up disappears after a random time between 3-8 seconds
-    }
+            popup.style.top = `${randomTop}px`;
+            popup.style.left = `${randomLeft}px`;
 
-    // Function to create multiple pop-ups in random intervals
-    function createMultiplePopups() {
-        const numPopups = Math.floor(Math.random() * 10) + 5; // Between 5 and 10 pop-ups
+            popup.style.display = 'block';
+            popup.style.animation = 'movePopUp 5s ease-in-out, erraticMove 2s infinite';
 
-        for (let i = 0; i < numPopups; i++) {
-            setTimeout(createPopup, Math.random() * 1000); // Randomize the time interval between pop-ups
+            // Remove the pop-up after 5 seconds (adjust this as needed)
+            setTimeout(() => {
+                popup.remove();
+            }, 5000);
         }
-    }
 
-    // Trigger the pop-ups to start on page load
-    window.onload = function() {
-        createMultiplePopups();
-    };
+        // Create random pop-ups at short intervals
+        setInterval(createRandomPopUp, 200);
 
-    // After 15 seconds, transition to the main homepage
-    setTimeout(() => {
-        window.location.href = 'home.html';  // Change 'home.html' to your desired homepage URL
-    }, 15000);  // Time before transition (15 seconds)
-</script>
-
+    </script>
 </body>
 </html>
