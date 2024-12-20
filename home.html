@@ -5,122 +5,165 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PORTFOLIO</title>
     <style>
-        /* Set the background to black */
-        body {
-            background-color: black;
+        /* Global Styles */
+        * {
             margin: 0;
             padding: 0;
-            font-family: Arial, sans-serif;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: black;
+            font-family: 'Helvetica', Arial, sans-serif;
+            color: white;
             height: 100%;
+            margin: 0;
+            overflow-x: hidden;
         }
 
         /* Navigation Bar Styles */
         nav {
-            background-color: black;
-            padding: 15px 30px;
+            background: linear-gradient(90deg, #ff5c8d, #ff004d);
+            padding: 15px 20px;
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            z-index: 100;
-            text-align: center;
-            box-shadow: 0 2px 5px rgba(255, 92, 141, 0.5);
+            display: flex;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
         }
 
         nav a {
             color: white;
-            font-size: 18px;
-            padding: 10px 20px;
             text-decoration: none;
-            font-family: 'Helvetica', sans-serif;
             text-transform: uppercase;
             font-weight: bold;
+            font-size: 16px;
+            padding: 10px 20px;
             margin: 0 10px;
-            border-radius: 8px;
+            border-radius: 25px;
             transition: all 0.3s ease;
         }
 
         nav a:hover {
-            background-color: #ff5c8d;
-            color: black;
-            box-shadow: 0 4px 10px rgba(255, 92, 141, 0.8);
+            background: white;
+            color: #ff004d;
+            box-shadow: 0 4px 15px rgba(255, 92, 141, 0.8);
             transform: translateY(-3px);
         }
 
-        /* Portfolio Description Styles */
-        .portfolio-description {
-            text-align: center;
-            color: white;
-            font-family: 'Helvetica', sans-serif;
-            font-weight: bold;
-            font-size: 20px;
-            margin: 120px auto 40px;
-            max-width: 80%;
-            line-height: 1.8;
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
-        }
-
-        /* Embed Frames Styling */
-        .embed-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
+        /* Hero Section */
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             justify-content: center;
-            margin: 40px auto;
+            height: 100vh;
+            text-align: center;
+            background: url('https://via.placeholder.com/1920x1080') no-repeat center center/cover;
+            color: white;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
             padding: 0 20px;
         }
 
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            max-width: 600px;
+            margin: 0 auto 20px;
+        }
+
+        .hero a {
+            display: inline-block;
+            background: linear-gradient(90deg, #ff5c8d, #ff004d);
+            color: white;
+            text-transform: uppercase;
+            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .hero a:hover {
+            background: white;
+            color: #ff004d;
+            transform: scale(1.1);
+        }
+
+        /* Portfolio Description */
+        .portfolio-description {
+            text-align: center;
+            color: white;
+            padding: 50px 20px;
+            font-size: 1.1rem;
+            background: #1a1a1a;
+            margin-top: -5px;
+            line-height: 1.8;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .portfolio-description h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        /* Embed Section */
+        .embed-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 50px 20px;
+            background: linear-gradient(to bottom, #1a1a1a, black);
+        }
+
         .embed-container iframe {
-            border-radius: 8px;
-            border: 2px solid #333;
-            width: 100%;
-            height: 352px;
-            transition: transform 0.3s ease;
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.8);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .embed-container iframe:hover {
             transform: scale(1.05);
+            box-shadow: 0 8px 30px rgba(255, 92, 141, 0.8);
         }
 
-        /* Image Placeholders Styling */
-        .image-placeholder-container {
+        /* Image Gallery */
+        .image-gallery {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 20px;
-            margin: 30px auto;
-            padding: 0 20px;
-            justify-items: center;
+            padding: 50px 20px;
+            background: #1a1a1a;
         }
 
-        .image-placeholder-container img {
+        .image-gallery img {
             width: 100%;
-            max-width: 300px;
-            height: auto;
-            border-radius: 12px;
-            background-color: #333;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.8);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .image-placeholder-container img:hover {
+        .image-gallery img:hover {
             transform: scale(1.1);
-            box-shadow: 0 4px 10px rgba(255, 92, 141, 0.8);
+            box-shadow: 0 8px 30px rgba(255, 92, 141, 0.8);
         }
 
-        /* Responsive Design for Mobile */
-        @media screen and (max-width: 768px) {
-            nav {
-                padding: 10px 20px;
-            }
-
-            nav a {
-                font-size: 16px;
-                padding: 10px 20px;
-            }
-
-            .portfolio-description {
-                font-size: 18px;
-                margin-top: 100px;
-            }
+        /* Footer */
+        footer {
+            background: linear-gradient(to right, #ff5c8d, #ff004d);
+            text-align: center;
+            padding: 20px;
+            color: white;
+            font-size: 0.9rem;
         }
     </style>
 </head>
@@ -130,28 +173,34 @@
         <a href="contact.html">Contact</a>
     </nav>
 
-    <!-- Portfolio Description -->
-    <div class="portfolio-description">
-        Mazzaieen is a London-based graphic designer known for creating dynamic and visually striking designs. 
-        Mazzaieen has collaborated with high-profile figures such as StevoTheMadMan, Marcus Rashford, Jesse Lingard, 
-        Big Narstie, Brahim Diaz, and many more. Renowned for blending creativity with impactful storytelling.
-    </div>
+    <section class="hero">
+        <h1>Welcome to Mazzaieen's Portfolio</h1>
+        <p>Dynamic designs. Impactful collaborations. Creativity that resonates. Discover the work of a London-based designer known for unique visual storytelling.</p>
+        <a href="#portfolio">Explore Portfolio</a>
+    </section>
 
-    <!-- Embed Spotify Tracks and YouTube Videos -->
-    <div class="embed-container">
-        <iframe src="https://www.youtube.com/embed/prWrBaJKcvA?si=7CBiOEMnSCTjJVq0" frameborder="0" allowfullscreen></iframe>
-        <iframe src="https://open.spotify.com/embed/track/2wu2MuaLEAyOgu4HlJA4aE?utm_source=generator" frameborder="0" allowfullscreen></iframe>
-        <iframe src="https://www.youtube.com/embed/wnJHaWn5g3Q?si=7AQIaRI00i2C6FpF" frameborder="0" allowfullscreen></iframe>
-        <iframe src="https://open.spotify.com/embed/track/0PoBiECB3RmymogexELgNL?utm_source=generator" frameborder="0" allowfullscreen></iframe>
-    </div>
+    <section id="portfolio" class="portfolio-description">
+        <h2>About Mazzaieen</h2>
+        Mazzaieen is a London-based graphic designer known for creating dynamic and visually striking designs. Collaborations include StevoTheMadMan, Marcus Rashford, Jesse Lingard, Big Narstie, Brahim Diaz, and many more.
+    </section>
 
-    <!-- Image Placeholders -->
-    <div class="image-placeholder-container">
-        <img src="https://via.placeholder.com/300" alt="Image 1">
-        <img src="https://via.placeholder.com/300" alt="Image 2">
-        <img src="https://via.placeholder.com/300" alt="Image 3">
-        <img src="https://via.placeholder.com/300" alt="Image 4">
-        <img src="https://via.placeholder.com/300" alt="Image 5">
-    </div>
+    <section class="embed-container">
+        <iframe src="https://www.youtube.com/embed/prWrBaJKcvA?si=7CBiOEMnSCTjJVq0" allowfullscreen></iframe>
+        <iframe src="https://open.spotify.com/embed/track/2wu2MuaLEAyOgu4HlJA4aE?utm_source=generator" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/wnJHaWn5g3Q?si=7AQIaRI00i2C6FpF" allowfullscreen></iframe>
+        <iframe src="https://open.spotify.com/embed/track/0PoBiECB3RmymogexELgNL?utm_source=generator" allowfullscreen></iframe>
+    </section>
+
+    <section class="image-gallery">
+        <img src="https://via.placeholder.com/300" alt="Design 1">
+        <img src="https://via.placeholder.com/300" alt="Design 2">
+        <img src="https://via.placeholder.com/300" alt="Design 3">
+        <img src="https://via.placeholder.com/300" alt="Design 4">
+        <img src="https://via.placeholder.com/300" alt="Design 5">
+    </section>
+
+    <footer>
+        &copy; 2024 Mazzaieen. All rights reserved.
+    </footer>
 </body>
 </html>
